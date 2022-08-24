@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "ORDERS")
+@SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Account account;
@@ -32,6 +33,10 @@ public class Order extends BaseModel{
     private PaymentMethod paymentMethod;
 
     @Column(precision = 10, scale = 2, nullable = false)
-    private BigDecimal cost;
+    private BigDecimal totalCost;
 
+    @Column(length = 50)
+    private String comments;
+
+    //STATUS????
 }
