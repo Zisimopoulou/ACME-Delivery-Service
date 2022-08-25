@@ -3,6 +3,9 @@ package com.acme.team7.ACMEDeliveryService.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -24,11 +27,13 @@ public class Account extends BaseModel{
     private String address;
 
     @Column(length = 30, nullable = false, unique = true)
+    @Email
     private String email;
 
     @Column(length = 10, nullable = false, unique = true)
     private String phoneNumber;
 
-    @Column(length = 3)
-    private int age;
+    @Max(value = 140, message = "too old for this application")
+    @Min(value = 13, message = "too young for this application")
+    private Integer age;
 }
