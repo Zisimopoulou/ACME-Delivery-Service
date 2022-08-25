@@ -70,5 +70,4 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent
       return getRepository().findAll();
    }
 
-
 }
