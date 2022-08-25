@@ -1,4 +1,8 @@
 package com.acme.team7.ACMEDeliveryService.service;
 
-public interface AccountService {
+import com.acme.team7.ACMEDeliveryService.domain.Account;
+import com.acme.team7.ACMEDeliveryService.repository.AccountRepository;
+
+public interface AccountService extends BaseService<Account> {
+    public AccountRepository getRepository();
 }
