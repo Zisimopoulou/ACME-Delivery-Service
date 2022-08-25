@@ -15,7 +15,7 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 @Entity
 @Table(name = "ACCOUNTS")
-    @SequenceGenerator(name = "idGenerator", sequenceName = "ACCOUNTS_SEQ", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "ACCOUNTS_SEQ", initialValue = 1, allocationSize = 1)
 public class Account extends BaseModel{
     @Column(length = 30, nullable = false)
     private String firstName;
