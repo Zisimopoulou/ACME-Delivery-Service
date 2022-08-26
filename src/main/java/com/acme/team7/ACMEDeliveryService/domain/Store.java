@@ -25,6 +25,7 @@ public class Store extends BaseModel {
     @Column(length = 30, nullable = false)
     private String address;
 
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private StoreCategory storeCategory;
 }
