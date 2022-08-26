@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "PRODUCT")
 @SequenceGenerator(name = "idGenerator", sequenceName = "PRODUCTS_SEQ", initialValue = 1, allocationSize = 1)
-
 public class Product extends BaseModel {
 
     @Column(length = 50, nullable = false)

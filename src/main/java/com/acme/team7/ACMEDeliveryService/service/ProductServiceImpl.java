@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-
-public class ProductServiceImpl extends BaseServiceImpl<Product>implements ProductService{
+public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService{
     private final ProductRepository productRepository;
 
     @Override

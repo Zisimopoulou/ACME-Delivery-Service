@@ -1,8 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.service;
 
-import com.acme.team7.ACMEDeliveryService.domain.Order;
-import com.acme.team7.ACMEDeliveryService.domain.OrderItem;
-import com.acme.team7.ACMEDeliveryService.domain.Store;
+import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
