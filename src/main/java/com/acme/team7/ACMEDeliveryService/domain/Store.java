@@ -23,6 +23,7 @@ public class Store extends BaseModel {
 
     private String address;
 
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private StoreCategory storeCategory;
 
