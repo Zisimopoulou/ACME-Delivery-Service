@@ -1,4 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.service;
 
-public interface ProductCategoryService {
+import com.acme.team7.ACMEDeliveryService.domain.ProductCategory;
+
+public interface ProductCategoryService extends BaseService<ProductCategory>{
 }
