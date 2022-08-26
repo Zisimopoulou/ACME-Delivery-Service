@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService{
     private final AccountRepository accountRepository;
+    @Override
     public JpaRepository<Account, Long> getRepository() {
         return accountRepository;
     }
