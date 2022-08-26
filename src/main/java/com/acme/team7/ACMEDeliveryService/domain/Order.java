@@ -35,8 +35,4 @@ public class Order extends BaseModel{
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal totalCost;
 
-    @Column(length = 50)
-    private String comments;
-
-    //STATUS????
 }

@@ -89,12 +89,11 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     }
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
-    public Order checkout(Order order, PaymentMethod paymentMethod, String comments) {
+    public Order checkout(Order order, PaymentMethod paymentMethod) {
         if (isNullOrderPayment(order,paymentMethod)) {
             return null;
         }
         order.setTotalCost(computeTotalCost(order));
-        order.setComments(comments);
         order.setDate(new Date());
         order.setPaymentMethod(paymentMethod);
         return create(order);
