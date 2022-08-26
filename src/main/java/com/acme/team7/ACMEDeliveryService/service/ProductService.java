@@ -1,8 +1,5 @@
 package com.acme.team7.ACMEDeliveryService.service;
-
 import com.acme.team7.ACMEDeliveryService.domain.Product;
-import com.acme.team7.ACMEDeliveryService.domain.Store;
-
 import java.util.List;
 
 public interface ProductService extends BaseService<Product> {
