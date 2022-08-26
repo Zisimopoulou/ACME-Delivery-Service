@@ -20,7 +20,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
         return productRepository;
     }
     @Override
-    public List<Product>reportTopProducts() {
+    public List<Product> reportTopProducts() {
         return productRepository.reportTopProducts();
     }
 
