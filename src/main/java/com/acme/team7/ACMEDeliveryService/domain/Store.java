@@ -20,8 +20,10 @@ public class Store extends BaseModel {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Product> products;
 
+    @Column(length = 30, nullable = false)
     private String name;
 
+    @Column(length = 30, nullable = false)
     private String address;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
