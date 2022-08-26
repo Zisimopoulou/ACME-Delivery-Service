@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -18,4 +20,23 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return storeRepository;
     }
 
+    @Override
+    public Store findByName(final String name) {
+        return storeRepository.findStoreByName(name);
+    }
+
+    @Override
+    public List<Store> findStoreByStoreCategory_Description(final String description) {
+        return storeRepository.findStoreByStoreCategory_Description(description);
+    }
+
+    @Override
+    public List<Store> reportTopStores() {
+        return storeRepository.reportTopStores();
+    }
+
+    @Override
+    public List<Store> reportTopStoresPerCategory() {
+        return storeRepository.reportTopStoresPerCategory();
+    }
 }
