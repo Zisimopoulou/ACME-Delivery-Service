@@ -20,7 +20,6 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 
     @Override
     public JpaRepository<Product, Long> getRepository() {
-
         return productRepository;
     }
     @Override
