@@ -12,10 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +25,10 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         return orderRepository;
     }
 
+    @Override
+    public Order initiateOrder(Account account) {
+        return Order.builder().account(account).orderItems(new ArrayList<>()).build();
+    }
     @Override
     public void addItem(Order order, Product product, int quantity) {
         if (isNullOrderProduct(order,product)) {

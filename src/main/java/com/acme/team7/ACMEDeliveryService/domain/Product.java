@@ -19,11 +19,9 @@ public class Product extends BaseModel {
     private String name;
     @Column(precision = 10, scale = 2,nullable = false)
     private BigDecimal price;
-
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private ProductCategory productcategory;
     @ManyToOne(fetch = FetchType.EAGER,optional=false)
     private Store store;
-
 
 }
