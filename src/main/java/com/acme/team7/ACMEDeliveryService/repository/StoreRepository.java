@@ -13,9 +13,9 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
     List<Store> findStoreByStoreCategory_Description(String description);
 
-    @Query(nativeQuery = true)
-    List<Store> reportTopStores();
-
-    @Query(nativeQuery = true)
-    List<Store> reportTopStoresPerCategory();
+//    @Query(nativeQuery = true)
+//    List<Store> reportTopStores();
+//
+//    @Query(nativeQuery = true)
+//    List<Store> reportTopStoresPerCategory();
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "STORE_CATEGORIES")
-@SequenceGenerator(name = "idGenerator", sequenceName = "STORE_CATEGORIES", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "STORE_CATEGORIES_SEQ", initialValue = 1, allocationSize = 1)
 public class StoreCategory extends BaseModel{
 
     @Column(length = 50, nullable = false)

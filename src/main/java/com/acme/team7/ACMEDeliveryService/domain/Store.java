@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "STORES")
-@SequenceGenerator(name = "idGenerator", sequenceName = "STORES", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "STORES_SEQ", initialValue = 1, allocationSize = 1)
 public class Store extends BaseModel {
 
     @ToString.Exclude
@@ -27,5 +27,4 @@ public class Store extends BaseModel {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private StoreCategory storeCategory;
 
-    private String review;
 }

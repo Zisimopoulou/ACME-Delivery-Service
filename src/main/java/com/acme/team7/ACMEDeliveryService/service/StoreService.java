@@ -10,7 +10,7 @@ public interface StoreService extends BaseService<Store>{
 
     List<Store> findStoreByStoreCategory_Description(String description);
 
-    List<Store> reportTopStores();
-
-    List<Store> reportTopStoresPerCategory();
+//    List<Store> reportTopStores();
+//
+//    List<Store> reportTopStoresPerCategory();
 }
