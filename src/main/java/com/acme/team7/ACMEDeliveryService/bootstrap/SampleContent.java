@@ -19,13 +19,14 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
     private final ProductService productService;
     private final StoreService storeService;
     private final StoreCategoryService storeCategoryService;
+    private final ProductCategoryService productCategoryService;
 
     @Override
     public void run(String... args) throws Exception {
 
         //Implement below Accounts
 
-
+        //Store Category
         StoreCategory tavern = storeCategoryService.create(StoreCategory.builder().description("Tavern").build());
         StoreCategory coffeeShop = storeCategoryService.create(StoreCategory.builder().description("Coffee Shop").build());
         StoreCategory iceCreamShop = storeCategoryService.create(StoreCategory.builder().description("Ice Cream Shop").build());
@@ -37,11 +38,11 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
                 Store.builder().name("Louloudaki").address("Plateia Eleftheris 51, 71303 Athens Attiki").storeCategory(tavern).build(),
                 Store.builder().name("Xelona").address("Analipsi 7, 70303 Athens Attiki").storeCategory(tavern).build(),
                 Store.builder().name("Kagiampis").address("Plateia Kornarou 51, 71203 Athens Attiki").storeCategory(souvlatzidiko).build(),
-                Store.builder().name("Louloudaki").address("Dikaiosinis 51, 70201 Athens Attiki").storeCategory(iceCreamShop).build());
+                Store.builder().name("Pratos").address("Dikaiosinis 51, 70201 Athens Attiki").storeCategory(iceCreamShop).build());
         log.info("Created stores. {}",storeService.createAll(storeList));
 
         //Implement below product category
-
+        StoreCategory coffee = storeCategoryService.create(StoreCategory.builder().description("Coffeee").build());
         //Implement below products
 
         //Set products to stores
@@ -55,7 +56,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         Account firstAccount = accountService.findByEmail("c.giannacoulis@codehub.gr");
         Order firstOrder = orderService.initiateOrder(firstAccount);
 //find by name and by store??
-        orderService.addItem(firstOrder, productService.findByName("Louloudaki Salad"), 2);
+        orderService.addItem(firstOrder, productService.findByName("Louloudaki Salad"), 2); //store=Louloudaki
         orderService.addItem(firstOrder, productService.findByName("Livers"), 1); //findByNameAndStore_Id ?????
         orderService.addItem(firstOrder, productService.findByName("Fried Zucchini"), 1);
 //        // Update item(s)
@@ -69,14 +70,14 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         Account secondCustomer = accountService.get(2L);
         Order secondOrder = orderService.initiateOrder(secondCustomer);
 
-        orderService.addItem(secondOrder, productService.findByName("Ice cream vanillia"), 1);
+        orderService.addItem(secondOrder, productService.findByName("Ice cream vanillia"), 1);//store=Pratos
         orderService.addItem(secondOrder, productService.findByName("Ice cream chocolate"), 1);
         orderService.checkout(secondOrder, PaymentMethod.CASH);
 
         // Third customer and order
         Account thirdAccount = accountService.findByPhone("6980614522");
         Order thirdOrder = orderService.initiateOrder(thirdAccount);
-        orderService.addItem(thirdOrder, productService.findByName("Tzatziki"), 3);
+        orderService.addItem(thirdOrder, productService.findByName("Tzatziki"), 3); //store=Kagiampis
         orderService.addItem(thirdOrder, productService.findByName("Greek cofee"), 2);
         orderService.addItem(thirdOrder, productService.findByName("Fried potatos"), 1);
         orderService.checkout(thirdOrder, PaymentMethod.CREDIT_CARD);
