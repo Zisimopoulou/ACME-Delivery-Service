@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class Store extends BaseModel {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "store",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Product> products;
+    private Set<Product> products;
 
     @Column(length = 30, nullable = false)
     @NotNull

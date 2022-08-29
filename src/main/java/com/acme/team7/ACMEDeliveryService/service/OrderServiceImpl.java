@@ -4,7 +4,6 @@ import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -27,7 +26,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
     @Override
     public Order initiateOrder(Account account) {
-        return Order.builder().account(account).orderItems(new ArrayList<>()).build();
+        return Order.builder().account(account).orderItems(new HashSet<>()).build();
     }
     @Override
     public void addItem(Order order, Product product, int quantity) {
@@ -35,15 +34,18 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             return;
         }
         if (isSameStore(order,product)) {
-            if (orderItemExistence(order, product) == null) {
-                log.debug("Adding new item on the order.");
-                order.getOrderItems().add(orderItemCreation(order,product,quantity));
+            boolean increasedQuantity = false;
+            log.debug("Changing the quantity of the product {}.",product);
+            for (OrderItem orderItem : order.getOrderItems()) {
+                if (orderItem.getProduct().getSerial().equals(product.getSerial())) {
+                    orderItem.setQuantity(orderItem.getQuantity() + quantity);
+                    increasedQuantity = true;
+                    break;
+                }
             }
-            if (orderItemExistence(order, product) != null) {
-                OrderItem orderItem = orderItemExistence(order,product);
-                Integer index = order.getOrderItems().indexOf(orderItem);
-                log.debug("Changing the quantity of the item {}.",orderItem);
-                order.getOrderItems().get(index).setQuantity(orderItem.getQuantity()+quantity);
+            if (!increasedQuantity) {
+                log.debug("Adding product {} on the list.",product);
+                order.getOrderItems().add(orderItemCreation(order, product, quantity));
             }
         }
         if (!isSameStore(order,product)) {
@@ -55,7 +57,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             order.getOrderItems().add(orderItemCreation(order,product,quantity));
         }
     }
-//ti tha ginei an quantity < 0??
+
     @Override
     public void updateItem(Order order, Product product, int quantity) {
         if (isNullOrderProduct(order,product)) {
@@ -67,9 +69,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         }
         if (orderItemExistence(order, product) != null) {
             OrderItem orderItem = orderItemExistence(order,product);
-            Integer index = order.getOrderItems().indexOf(orderItem);
-            order.getOrderItems().get(index).setQuantity(quantity);
-            log.warn("Product {} updated in the order {}.",product,order);
+            order.getOrderItems().remove(orderItem);
+            order.getOrderItems().add(orderItemCreation(order, product, quantity));
+            log.info("Product [{}] updated in order [{}]",product,order);
         }
     }
 
@@ -94,7 +96,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             return null;
         }
         order.setTotalCost(computeTotalCost(order));
-        order.setDate(new Date());
+        order.setSubmissionDate(new Date());
         order.setPaymentMethod(paymentMethod);
         return create(order);
     }
@@ -117,10 +119,10 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     }
 
     private boolean isSameStore(Order order, Product product) {
-        if (order.getOrderItems().get(0).getProduct().getStore().getId().equals(product.getStore().getId())) {
+        if (order.getOrderItems().iterator().next().getProduct().getStore().getId().equals(product.getStore().getId())) {
             return true;
         }
-        log.warn("Unable to add item from a different store.");
+        log.error("Unable to add item from a different store."); //????? error?
         return false;
     }
 

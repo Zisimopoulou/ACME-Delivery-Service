@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,16 +31,15 @@ public class Order extends BaseModel{
     @Column(nullable = false)
     @FutureOrPresent
     @NotNull
-    private Date date;
+    private Date submissionDate;
     @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @NotNull
-    private List<@NotNull OrderItem> orderItems;
+    private Set<@NotNull OrderItem> orderItems;
     @Enumerated(EnumType.STRING)
     @Column(length = 11, nullable = false)
     @NotNull
     private PaymentMethod paymentMethod;
-
     @Column(precision = 10, scale = 2, nullable = false)
     @NotNull
     private BigDecimal totalCost;
