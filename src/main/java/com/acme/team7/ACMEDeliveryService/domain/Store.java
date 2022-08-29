@@ -3,6 +3,7 @@ package com.acme.team7.ACMEDeliveryService.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -21,11 +22,14 @@ public class Store extends BaseModel {
     private List<Product> products;
 
     @Column(length = 30, nullable = false)
+    @NotNull
     private String name;
 
     @Column(length = 30, nullable = false)
+    @NotNull
     private String address;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @NotNull
     private StoreCategory storeCategory;
 }

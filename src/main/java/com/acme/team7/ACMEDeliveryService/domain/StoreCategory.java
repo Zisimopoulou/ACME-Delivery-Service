@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -19,5 +20,6 @@ import javax.persistence.Table;
 public class StoreCategory extends BaseModel{
 
     @Column(length = 50, nullable = false)
+    @NotNull
     private String description;
 }
