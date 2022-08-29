@@ -1,5 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.bootstrap;
 
+import ch.qos.logback.classic.Level;
 import com.acme.team7.ACMEDeliveryService.base.BaseComponent;
 import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.service.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 @Component
+
 @RequiredArgsConstructor
 public class SampleContent extends BaseComponent implements CommandLineRunner {
     private final AccountService accountService;
@@ -56,8 +58,33 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         log.info("Created stores. {}",storeService.createAll(storeList));
 
         //Implement below product category
-        StoreCategory coffee = storeCategoryService.create(StoreCategory.builder().description("Coffeee").build());
+        ProductCategory coffee = ProductCategoryService.create(ProductCategory.builder().description("Coffeee").build());
+        ProductCategory iceCream = ProductCategoryService.create(ProductCategory.builder().description("iceCream").build());
+      
+
         //Implement below products
+        List<Product> products = List.of(
+                Product.builder().store("Louloudaki").name("patates")
+                        .price(BigDecimal.valueOf(8)).category(newCategory).build(),
+                Product.builder().store("Pratos").name("mango")
+                        .price(BigDecimal.valueOf(2)).category(newCategory).build(),
+                Product.builder().store("Kagiampis").name("soublaki")
+                        .price(BigDecimal.valueOf(2.80)).category(newCategory).build(),
+                Product.builder().store("Xelona").name("astakos")
+                        .price(BigDecimal.valueOf(13)).category(newCategory).build(),
+                Product.builder().store("Louloudaki").name("salad")
+                        .price(BigDecimal.valueOf(4)).category(newCategory).build(),
+                Product.builder().store("Pratos").name("iceCreamKilos")
+                        .price(BigDecimal.valueOf(15)).category(newCategory).build(),
+                Product.builder().store("Louloudaki").name("xaloymi")
+                        .price(BigDecimal.valueOf(4)).category(newCategory).build(),
+                Product.builder().store("Xelona").name("freshFish")
+                        .price(BigDecimal.valueOf(10)).category(newCategory).build(),
+
+
+        );
+
+        logger.info("Created {} products.", productService.createAll(products).size());
 
         //Set products to stores
 

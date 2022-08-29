@@ -5,7 +5,7 @@ import com.acme.team7.ACMEDeliveryService.domain.BaseModel;
 import java.util.List;
 
 public interface BaseService<T extends BaseModel> {
-    T create(final T entity);
+    static T create(final T entity);
 
     List<T> createAll(final T... entities);
 
