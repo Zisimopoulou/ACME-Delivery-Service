@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Slf4j
@@ -65,21 +66,21 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         //Implement below products
         List<Product> products = List.of(
                 Product.builder().store("Louloudaki").name("patates")
-                        .price(BigDecimal.valueOf(8)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(8)).category(tavern).build(),
                 Product.builder().store("Pratos").name("mango")
-                        .price(BigDecimal.valueOf(2)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(2)).category(iceCream).build(),
                 Product.builder().store("Kagiampis").name("soublaki")
-                        .price(BigDecimal.valueOf(2.80)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(2.80)).category(souvlatzidiko).build(),
                 Product.builder().store("Xelona").name("astakos")
-                        .price(BigDecimal.valueOf(13)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(13)).category(tavern).build(),
                 Product.builder().store("Louloudaki").name("salad")
-                        .price(BigDecimal.valueOf(4)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(4)).category(tavern).build(),
                 Product.builder().store("Pratos").name("iceCreamKilos")
-                        .price(BigDecimal.valueOf(15)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(15)).category(iceCream).build(),
                 Product.builder().store("Louloudaki").name("xaloymi")
-                        .price(BigDecimal.valueOf(4)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(4)).category(tavern).build(),
                 Product.builder().store("Xelona").name("freshFish")
-                        .price(BigDecimal.valueOf(10)).category(newCategory).build(),
+                        .price(BigDecimal.valueOf(10)).category(tavern).build(),
 
 
         );
