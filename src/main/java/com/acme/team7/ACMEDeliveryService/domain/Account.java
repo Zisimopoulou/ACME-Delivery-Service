@@ -30,6 +30,9 @@ public class Account extends BaseModel{
     @Email
     private String email;
 
+    @Column(length = 30, nullable = false)
+    private String password;
+
     @Column(length = 10, nullable = false, unique = true)
     private String phoneNumber;
 
