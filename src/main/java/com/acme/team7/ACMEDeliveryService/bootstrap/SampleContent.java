@@ -25,6 +25,20 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //Implement below Accounts
+        List<Account> accountList= accountService.createAll(
+                Account.builder().firstName("Apostolis").lastName("Antoniadis")
+                        .address("Eleftheriou Venizelou 7, 15341 Athina Attica").email("akhvakhec@greendike.com")
+                        .password("44&4C&b7Z20^").phoneNumber("6984072273").age(25).build(),
+                Account.builder().firstName("Ermis").lastName("Valides")
+                        .address("Patriarchou Ioakim 45, 10676 Athina Attica").email("mommykmr@hotmail.red")
+                        .password("hRF2Uc740&^8").phoneNumber("6998438152").age(46).build(),
+                Account.builder().firstName("Panikos").lastName("Demetriidis")
+                        .address("Sofokleous 26, 10552 Athina Attica").email("neeneemusic@schule-breklum.de")
+                        .password("Bc%89AVSw1jw").phoneNumber("6971078143").age(32).build(),
+                Account.builder().firstName("Nikolas").lastName("Tassides")
+                        .address("Rovertou Galli 4, 11742 Athina Attica").email("lev12@typestring.com")
+                        .password("We9#8uzEl8lF").phoneNumber("6948361237").age(19).build());
+                log.info("Accounts created: {}.", accountService.createAll(accountList));
 
         //Store Category
         StoreCategory tavern = storeCategoryService.create(StoreCategory.builder().description("Tavern").build());
@@ -49,11 +63,11 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         accountService.findAll().forEach(c -> log.info("{}", c));
 
-        log.info("Does customer exist? {}.", (accountService.findByEmail("c.giannacoulis@codehub.gr") != null));
-        log.info("Does customer exist? {}.", (accountService.findByEmail("non-existing@gmail.com") != null));
+        log.info("Does customer email exist? {}.", (accountService.findByEmail("neeneemusic@schule-breklum.de") != null));
+        log.info("Does customer email exist? {}.", (accountService.findByEmail("mommykmr@hotmail.red") != null));
 
         // Load customer and create an order by adding/updating/removing content before checking it out
-        Account firstAccount = accountService.findByEmail("c.giannacoulis@codehub.gr");
+        Account firstAccount = accountService.findByEmail("mommykmr@hotmail.red");
         Order firstOrder = orderService.initiateOrder(firstAccount);
 //find by name and by store??
         orderService.addItem(firstOrder, productService.findByName("Louloudaki Salad"), 2); //store=Louloudaki
@@ -75,7 +89,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.checkout(secondOrder, PaymentMethod.CASH);
 
         // Third customer and order
-        Account thirdAccount = accountService.findByPhone("6980614522");
+        Account thirdAccount = accountService.findByPhoneNumber("6984072273");
         Order thirdOrder = orderService.initiateOrder(thirdAccount);
         orderService.addItem(thirdOrder, productService.findByName("Tzatziki"), 3); //store=Kagiampis
         orderService.addItem(thirdOrder, productService.findByName("Greek cofee"), 2);
