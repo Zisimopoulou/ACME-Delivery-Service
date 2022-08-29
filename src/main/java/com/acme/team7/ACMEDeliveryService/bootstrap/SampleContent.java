@@ -27,16 +27,16 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         //Implement below Accounts
         List<Account> accountList= accountService.createAll(
                 Account.builder().firstName("Apostolis").lastName("Antoniadis")
-                        .address("Eleftheriou Venizelou 7, 15341 Athina Attica").email("akhvakhec@greendike.com")
+                        .address("Eleftheriou Venizelou 7 15341 Athina Attica").email("akhvakhec@greendike.com")
                         .password("44&4C&b7Z20^").phoneNumber("6984072273").age(25).build(),
                 Account.builder().firstName("Ermis").lastName("Valides")
-                        .address("Patriarchou Ioakim 45, 10676 Athina Attica").email("mommykmr@hotmail.red")
+                        .address("Patriarchou Ioakim 45 10676 Athina Attica").email("mommykmr@hotmail.red")
                         .password("hRF2Uc740&^8").phoneNumber("6998438152").age(46).build(),
                 Account.builder().firstName("Panikos").lastName("Demetriidis")
-                        .address("Sofokleous 26, 10552 Athina Attica").email("neeneemusic@schule-breklum.de")
+                        .address("Sofokleous 26 10552 Athina Attica").email("neeneemusic@schule-breklum.de")
                         .password("Bc%89AVSw1jw").phoneNumber("6971078143").age(32).build(),
                 Account.builder().firstName("Nikolas").lastName("Tassides")
-                        .address("Rovertou Galli 4, 11742 Athina Attica").email("lev12@typestring.com")
+                        .address("Rovertou Galli 4 11742 Athina Attica").email("lev12@typestring.com")
                         .password("We9#8uzEl8lF").phoneNumber("6948361237").age(19).build());
                 log.info("Accounts created: {}.", accountService.createAll(accountList));
 
@@ -49,10 +49,10 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         //functionaliti na min mporei na paragilei apo makria??
         List<Store> storeList = List.of(
-                Store.builder().name("Louloudaki").address("Plateia Eleftheris 51, 71303 Athens Attiki").storeCategory(tavern).build(),
-                Store.builder().name("Xelona").address("Analipsi 7, 70303 Athens Attiki").storeCategory(tavern).build(),
-                Store.builder().name("Kagiampis").address("Plateia Kornarou 51, 71203 Athens Attiki").storeCategory(souvlatzidiko).build(),
-                Store.builder().name("Pratos").address("Dikaiosinis 51, 70201 Athens Attiki").storeCategory(iceCreamShop).build());
+                Store.builder().name("Louloudaki").address("Plateia Eleftheris 51 71303 Athens Attiki").storeCategory(tavern).build(),
+                Store.builder().name("Xelona").address("Analipsi 7 70303 Athens Attiki").storeCategory(tavern).build(),
+                Store.builder().name("Kagiampis").address("Plateia Kornarou 51 71203 Athens Attiki").storeCategory(souvlatzidiko).build(),
+                Store.builder().name("Pratos").address("Dikaiosinis 51 70201 Athens Attiki").storeCategory(iceCreamShop).build());
         log.info("Created stores. {}",storeService.createAll(storeList));
 
         //Implement below product category
