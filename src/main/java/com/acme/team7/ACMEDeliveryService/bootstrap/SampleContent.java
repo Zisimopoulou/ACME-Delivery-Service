@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -29,16 +30,16 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         List<Account> accountList= accountService.createAll(
                 Account.builder().firstName("Apostolis").lastName("Antoniadis")
                         .address("Eleftheriou Venizelou 7 15341 Athina Attica").email("akhvakhec@greendike.com")
-                        .password("44&4C&b7Z20^").phoneNumber("6984072273").age(25).build(),
+                        .password("44&4C&b7Z20").phoneNumber("6984072273").age(25).build(),
                 Account.builder().firstName("Ermis").lastName("Valides")
                         .address("Patriarchou Ioakim 45 10676 Athina Attica").email("mommykmr@hotmail.red")
-                        .password("hRF2Uc740&^8").phoneNumber("6998438152").age(46).build(),
+                        .password("44&4C&b7Z21").phoneNumber("6998438152").age(46).build(),
                 Account.builder().firstName("Panikos").lastName("Demetriidis")
                         .address("Sofokleous 26 10552 Athina Attica").email("neeneemusic@schule-breklum.de")
-                        .password("Bc%89AVSw1jw").phoneNumber("6971078143").age(32).build(),
+                        .password("44&4C&b7Z22").phoneNumber("6971078143").age(32).build(),
                 Account.builder().firstName("Nikolas").lastName("Tassides")
                         .address("Rovertou Galli 4 11742 Athina Attica").email("lev12@typestring.com")
-                        .password("We9#8uzEl8lF").phoneNumber("6948361237").age(19).build());
+                        .password("44&4C&b7Z23").phoneNumber("6948361237").age(19).build());
                 log.info("Accounts created: {}.", accountService.createAll(accountList));
 
         accountService.findAll().forEach(c -> log.info("{}", c));
@@ -52,10 +53,10 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         StoreCategory souvlatzidiko = storeCategoryService.create(StoreCategory.builder().description("Souvlatzidiko").build());
         storeCategoryService.findAll().forEach(sc -> log.info("Store category {} created.", sc));
 
-        Store louloudaki = storeService.create(Store.builder().name("Louloudaki").storeCategory(tavern).address("Plateia Eleftheris 51 71303 Athens Attiki").build());
-        Store xelona = storeService.create(Store.builder().name("Xelona").storeCategory(tavern).address("Analipsi 7 70303 Athens Attiki").build());
-        Store kagiampis = storeService.create(Store.builder().name("Kagiampis").storeCategory(tavern).address("Plateia Kornarou 51 71203 Athens Attiki").build());
-        Store pratos = storeService.create(Store.builder().name("Pratos").storeCategory(iceCreamShop).address("Dikaiosinis 51 70201 Athens Attiki").build());
+        Store louloudaki = storeService.create(Store.builder().name("Louloudaki").storeCategory(tavern).address("Plateia Eleftheris 51 71303 Athens Attica").build());
+        Store xelona = storeService.create(Store.builder().name("Xelona").storeCategory(tavern).address("Analipsi 7 70303 Athens").build());
+        Store kagiampis = storeService.create(Store.builder().name("Kagiampis").storeCategory(tavern).address("Plateia Kornarou 51 71203 Athens Attica").build());
+        Store pratos = storeService.create(Store.builder().name("Pratos").storeCategory(iceCreamShop).address("Dikaiosinis 51 70201 Athens Attica").build());
         storeCategoryService.findAll().forEach(s -> log.info("Stores {} created.", s));
 
         ProductCategory salad = productCategoryService.create(ProductCategory.builder().description("Salad").build());
@@ -102,11 +103,12 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
                                                 .productcategory(drinks).store(kagiampis).build(),
                                         Product.builder().serial("30-0-00000-4-0003").name("Orange juice").price(BigDecimal.valueOf(2.5))
                                                 .productcategory(drinks).store(kagiampis).build());
-
-        //set products to stores
+        log.info("Accounts created: {}.", productService.createAll(products));
+        System.out.println(productService.findBySerial("30-0-00000-4-0002"));
 
         Account firstAccount = accountService.findByEmail("mommykmr@hotmail.red");
         Order firstOrder = orderService.initiateOrder(firstAccount);
+        firstOrder.setSerial("0000010001");
 
         orderService.addItem(firstOrder, productService.findBySerial("30-0-00000-1-0001"), 2);
         orderService.addItem(firstOrder, productService.findBySerial("30-0-00000-1-0002"), 1);
@@ -120,6 +122,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         Account secondCustomer = accountService.get(2L);
         Order secondOrder = orderService.initiateOrder(secondCustomer);
+        secondOrder.setSerial("0000010002");
 
         orderService.addItem(secondOrder, productService.findBySerial("30-0-00000-2-0001"), 1);
         orderService.addItem(secondOrder, productService.findBySerial("30-0-00000-2-0002"), 1);
@@ -127,6 +130,8 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         Account thirdAccount = accountService.findByPhoneNumber("6984072273");
         Order thirdOrder = orderService.initiateOrder(thirdAccount);
+        thirdOrder.setSerial("0000010003");
+
         orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0001"), 3);
         orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0002"), 2);
         orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0003"), 1);
