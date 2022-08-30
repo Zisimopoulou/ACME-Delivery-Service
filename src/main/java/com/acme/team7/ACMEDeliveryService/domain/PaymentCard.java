@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 @ToString(callSuper = true)
 @Builder
 @AllArgsConstructor
-public class CreditCard {
+public class PaymentCard {
     @CreditCardNumber
     @NotNull
     @Pattern(regexp="(^$|[0-9]{10})")
