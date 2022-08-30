@@ -41,7 +41,7 @@ public class Order extends BaseModel{
     private Set<@NotNull OrderItem> orderItems;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 11, nullable = false)
+    @Column(length = 12, nullable = false)
     @NotNull
     private PaymentMethod paymentMethod;
 
