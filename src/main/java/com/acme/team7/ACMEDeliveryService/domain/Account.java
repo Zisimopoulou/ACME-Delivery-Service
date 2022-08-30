@@ -26,7 +26,7 @@ public class Account extends BaseModel{
     private String lastName;
 
     @NotNull(message = "Address is required")
-    @Column(length = 30, nullable = false)
+    @Column(length = 50, nullable = false)
     @Pattern(regexp = "^[a-zA-Z0-9 ]*$$", message = "Address must be alphabetic")
     private String address;
 
@@ -37,10 +37,10 @@ public class Account extends BaseModel{
 
     @NotNull(message = "Password is required")
     @Column(length = 30, nullable = false)
-    @Pattern(regexp = "\"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()Ã¢Â€Â“[{}]:;',?/*~$^+=<>]).{8,20}$\", \n" +
-            "         message = \"Invalid Password pattern" +
-            ". Password must contain 8 to 20 characters at least one digit" +
-            ", lower, upper case and one special character.\"")
+//    @Pattern(regexp = "\"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()Ã¢Â€Â“[{}]:;',?/*~$^+=<>]).{8,20}$\", \n" +
+//            "         message = \"Invalid Password pattern" +
+//            ". Password must contain 8 to 20 characters at least one digit" +
+//            ", lower, upper case and one special character.\"")
     private String password;
 
     @NotNull(message = "Phone number is required")
