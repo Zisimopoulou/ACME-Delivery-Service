@@ -33,20 +33,21 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         if (isNullOrderProduct(order,product)) {
             return;
         }
+        if (order.getOrderItems().isEmpty()) {
+            log.info("Adding first product to order.");
+            order.getOrderItems().add(orderItemCreation(order,product,quantity));
+            return;
+        }
         if (isSameStore(order,product)) {
-            boolean increasedQuantity = false;
-            log.debug("Changing the quantity of the product {}.",product);
             for (OrderItem orderItem : order.getOrderItems()) {
                 if (orderItem.getProduct().getSerial().equals(product.getSerial())) {
                     orderItem.setQuantity(orderItem.getQuantity() + quantity);
-                    increasedQuantity = true;
-                    break;
+                    log.debug("Quantity of the product {}, changed.",product);
+                    return;
                 }
             }
-            if (!increasedQuantity) {
-                log.debug("Adding product {} on the list.",product);
-                order.getOrderItems().add(orderItemCreation(order, product, quantity));
-            }
+            order.getOrderItems().add(orderItemCreation(order, product, quantity));
+            log.debug("Product {}, added to basket.",product);
         }
         if (!isSameStore(order,product)) {
             log.warn("New store selection.");
@@ -122,7 +123,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         if (order.getOrderItems().iterator().next().getProduct().getStore().getId().equals(product.getStore().getId())) {
             return true;
         }
-        log.error("Unable to add item from a different store."); //????? error?
+        log.error("Unable to add item from a different store.");
         return false;
     }
 
@@ -131,8 +132,8 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             log.warn("Invalid null order.");
             return true;
         }
-        if (order.getOrderItems() == null){
-            log.warn("Invalid null order item list.");
+        if (order.getOrderItems().isEmpty()){
+            log.warn("Basket is empty.");
             return true;
         }
         if (paymentMethod == null) {
