@@ -24,22 +24,27 @@ public class Order extends BaseModel{
     @Column(length = 30, nullable = false, unique = true)
     @NotEmpty
     private String serial;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
     private Account account;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    @FutureOrPresent
+//    @FutureOrPresent
     @NotNull
     private Date submissionDate;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @NotNull
     private Set<@NotNull OrderItem> orderItems;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 11, nullable = false)
     @NotNull
     private PaymentMethod paymentMethod;
+
     @Column(precision = 10, scale = 2, nullable = false)
     @NotNull
     private BigDecimal totalCost;
