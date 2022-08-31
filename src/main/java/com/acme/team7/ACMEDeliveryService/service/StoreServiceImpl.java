@@ -21,7 +21,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public Store findByName(final String name) {
+    public List<Store> findByName(final String name) {
         return storeRepository.findStoreByName(name);
     }
 

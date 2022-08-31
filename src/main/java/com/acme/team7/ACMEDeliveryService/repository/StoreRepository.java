@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
-    Store findStoreByName(String name);
+    List<Store> findStoreByName(String name);
 
     List<Store> findStoreByStoreCategory_Description(String description);
 
