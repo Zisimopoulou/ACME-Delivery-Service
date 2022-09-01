@@ -118,7 +118,8 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 //        orderService.updateItem(firstOrder, productService.findBySerial("30-0-00000-1-0002"), 2);
 //        // Remove item(s)
 //        orderService.removeItem(firstOrder, productService.findBySerial("30-0-00000-1-0003"));
-        orderService.checkout(firstOrder, PaymentMethod.CREDIT_CARD);
+        orderService.proceedToCheckout(firstOrder,PaymentMethod.CASH);
+        orderService.checkout(firstOrder);
 
         Account secondCustomer = accountService.get(2L);
         Order secondOrder = orderService.initiateOrder(secondCustomer);
@@ -126,7 +127,8 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         orderService.addItem(secondOrder, productService.findBySerial("30-0-00000-2-0001"), 1);
         orderService.addItem(secondOrder, productService.findBySerial("30-0-00000-2-0002"), 1);
-        orderService.checkout(secondOrder, PaymentMethod.CASH);
+        orderService.proceedToCheckout(secondOrder,PaymentMethod.CASH);
+        orderService.checkout(secondOrder);
 
         Account thirdAccount = accountService.findByPhoneNumber("6984072273");
         Order thirdOrder = orderService.initiateOrder(thirdAccount);
@@ -135,7 +137,8 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0001"), 3);
         orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0002"), 2);
         orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0003"), 1);
-        orderService.checkout(thirdOrder, PaymentMethod.CREDIT_CARD);
+        orderService.proceedToCheckout(thirdOrder,PaymentMethod.PAYMENT_CARD);
+        orderService.checkout(thirdOrder);
 
     }
 }
