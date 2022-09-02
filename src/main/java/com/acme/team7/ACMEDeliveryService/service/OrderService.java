@@ -6,11 +6,11 @@ public interface OrderService extends BaseService<Order> {
 
     Order initiateOrder(Account account);
 
-    void addItem(Order order, Product product, int quantity);
+    void addItem(Order order, StoreProduct storeProduct, int quantity);
 
-    void updateItem(Order order, Product product, int quantity);
+    void updateItem(Order order, StoreProduct storeProduct, int quantity);
 
-    void removeItem(Order order, Product product);
+    void removeItem(Order order, StoreProduct storeProduct);
 
     Order checkout(Order order);
 
