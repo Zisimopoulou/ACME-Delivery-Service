@@ -47,7 +47,6 @@ public class Account extends BaseModel{
     @Column(length = 10, nullable = false, unique = true)
     private String phoneNumber;
 
-    @Max(value = 140, message = "too old for this application")
     @Min(value = 13, message = "too young for this application")
     private Integer age;
 }
