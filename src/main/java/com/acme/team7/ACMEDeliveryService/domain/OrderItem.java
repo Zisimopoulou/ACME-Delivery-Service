@@ -4,7 +4,9 @@ import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 @Getter
@@ -24,9 +26,11 @@ public class OrderItem extends BaseModel{
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    private Product product;
+    private StoreProduct storeProduct;
 
+    @Min(value = 1, message = "At least one product is required.")
     @Column(nullable = false)
+    @Pattern(regexp = "[0-9]+",message = "Quantity must be an integer.")
     @NotNull
     private Integer quantity;
 
