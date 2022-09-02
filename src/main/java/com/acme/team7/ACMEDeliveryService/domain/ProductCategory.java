@@ -9,16 +9,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Getter
-@Setter
 @ToString(callSuper = true)
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "PRODUCT_CATEGORIESS")
-@SequenceGenerator(name = "idGenerator", sequenceName = "PRODUCT_CATEGORIES_SEQ", initialValue = 1, allocationSize = 1)
-public class ProductCategory extends BaseModel{
-    @Column(length=50,nullable = false)
-    @NotNull
-    private String description;
+public enum ProductCategory {
+    SALAD,
+    APPETISERS,
+    SOUVLAKI,
+    ICECREAM,
+    SAUCE,
+    OVEN,
+    ROASTMEAT,
+    DRINKS,
+    SINGEPIECE,
+    SANDWICH,
+    SKEPASTES,
+    POIKILIES
 }
