@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
 public class StoreCategory extends BaseModel{
 
     @Column(length = 50, nullable = false)
-    @NotNull
+    @NotNull(message = "Store category description is required.")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Store categories must be alphabetic.")
     private String description;
 }

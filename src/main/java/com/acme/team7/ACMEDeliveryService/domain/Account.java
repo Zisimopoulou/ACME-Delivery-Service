@@ -27,7 +27,7 @@ public class Account extends BaseModel{
 
     @NotNull(message = "Address is required")
     @Column(length = 50, nullable = false)
-    @Pattern(regexp = "^[a-zA-Z0-9 ]*$$", message = "Address must be alphabetic")
+    @Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Address must be alphanumeric.")
     private String address;
 
     @NotNull(message = "Email number is required")
@@ -47,6 +47,7 @@ public class Account extends BaseModel{
     @Column(length = 10, nullable = false, unique = true)
     private String phoneNumber;
 
+    @NotNull(message = "Age is required.")
     @Min(value = 13, message = "too young for this application")
     private Integer age;
 }

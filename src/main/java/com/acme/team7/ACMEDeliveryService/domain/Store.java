@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Getter
@@ -19,10 +20,12 @@ public class Store extends BaseModel {
 
     @Column(length = 50, nullable = false)
     @NotNull(message = "Store name is required.")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Store name must be alphabetic.")
     private String name;
 
     @Column(length = 50, nullable = false)
     @NotNull(message = "Store address is required.")
+    @Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Address must be alphanumeric.")
     private String address;
 
     @Column
