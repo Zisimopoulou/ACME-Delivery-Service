@@ -26,9 +26,4 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
     public Product findByName(final String name) {
         return productRepository.findProductByName(name);
     }
-
-    @Override
-    public Product findBySerial(final String serial) {
-        return productRepository.findProductBySerial(serial);
-    }
 }

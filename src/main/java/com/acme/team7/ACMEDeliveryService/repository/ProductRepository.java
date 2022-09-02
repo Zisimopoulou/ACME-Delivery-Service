@@ -9,6 +9,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 //
 //    List<Product> reportTopProducts();
     Product findProductByName(String name);
-    Product findProductBySerial(String serial);
 }
 
