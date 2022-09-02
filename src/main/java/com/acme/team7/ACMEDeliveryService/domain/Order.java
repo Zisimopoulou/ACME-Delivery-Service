@@ -25,7 +25,7 @@ public class Order extends BaseModel{
     @NotEmpty
     private String serial;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     private Account account;
 
