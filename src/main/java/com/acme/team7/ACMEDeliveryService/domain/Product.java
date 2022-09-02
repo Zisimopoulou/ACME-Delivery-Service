@@ -21,7 +21,6 @@ public class Product extends BaseModel {
     @NotEmpty(message = "Name of the product is required.")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull(message = "Product category is required.")
     private ProductCategory productcategory;
 
