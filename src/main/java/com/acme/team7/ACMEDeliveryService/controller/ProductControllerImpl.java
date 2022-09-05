@@ -1,5 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.controller;
 import com.acme.team7.ACMEDeliveryService.domain.Product;
+import com.acme.team7.ACMEDeliveryService.service.BaseService;
 import com.acme.team7.ACMEDeliveryService.service.ProductService;
 import com.acme.team7.ACMEDeliveryService.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,12 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 @RequestMapping("Products")
 
-public class ProductCategoryController {
+public class ProductControllerImpl extends BaseControllerImpl<Product> implements ProductController{
     private final ProductService productService;
+    @Override
+    public BaseService<Product> getBaseService() {
+        return productService;
+    }
     @GetMapping(params = "Name")
     public ResponseEntity<ApiResponse<Product>> findProductByName(@RequestParam String name) {
         final Product Byname = productService.findByName(name);
@@ -24,4 +29,4 @@ public class ProductCategoryController {
         return  ResponseEntity.ok(ApiResponse.<Product>builder().data(Byname).build());
     }
 
-    }
+}
