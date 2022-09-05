@@ -1,12 +1,14 @@
 package com.acme.team7.ACMEDeliveryService.service;
 
-import com.acme.team7.ACMEDeliveryService.domain.Store;
+import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -21,13 +23,49 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<Store> findByName(final String name) {
-        return storeRepository.findStoreByName(name);
+    public List<Store> findStoresByNameOrStoreCategory_Description(String name, String description) {
+        return storeRepository.findStoresByNameOrStoreCategory_Description(name,description);
     }
 
     @Override
-    public List<Store> findStoreByStoreCategory_Description(final String description) {
-        return storeRepository.findStoreByStoreCategory_Description(description);
+    public Store initiateStore(String name, StoreCategory storeCategory, String address) {
+        return Store.builder().name(name).storeCategory(storeCategory).address(address).storeProducts(new HashSet<>()).build();
+    }
+
+    @Override
+    public void addStoreProduct(Store store, Product product, String name, String details, BigDecimal price, String image) {
+        store.getStoreProducts().add(storeProductCreation(store,product, name, details, price, image));
+        log.info("Store products added to the store.");
+    } //elegxontai ta patterns meso tou build etsi?? opote edo den xreiazetai na checkaro kati etsi?
+
+
+    //kamia kali idea gia na min exo diaforetika function gia to kathe update?? add ki alla px name,details,ktlp
+    @Override
+    public void updateStoreProductPrice(Store store, StoreProduct storeProduct, BigDecimal price) { //add check nullability??
+        store.getStoreProducts().removeIf(sp -> sp.getId().equals(storeProduct.getId()));
+        store.getStoreProducts().add(storeProductCreation(store,storeProduct.getProduct(),storeProduct.getName(),storeProduct.getDetails(),price,storeProduct.getImage()));
+        update(store);
+    }
+
+    @Override
+    public void removeStoreProduct(Store store, StoreProduct storeProduct) {
+        store.getStoreProducts().removeIf(sp -> sp.getId().equals(storeProduct.getId()));
+        log.info("Unable to delete store product not existing in the store.");
+        update(store); //sosto?????????
+    }
+
+    @Override
+    public StoreProduct getStoreProduct(Store store, Long id){
+        if (store.getStoreProducts().iterator().next().getId().equals(id)) {
+            log.info("Nameee {}", store.getStoreProducts().iterator().next().getName());
+            return store.getStoreProducts().iterator().next();
+        }
+        log.info("Unable to find store product with name {}.", id);
+        return null;
+    }
+
+    private StoreProduct storeProductCreation(Store store, Product product, String name, String details, BigDecimal price, String image) {
+        return StoreProduct.builder().store(store).product(product).name(name).details(details).price(price).image(image).build();
     }
 
 //    @Override

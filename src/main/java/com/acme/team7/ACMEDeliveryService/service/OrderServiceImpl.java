@@ -110,14 +110,14 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         return order;
     }
 
-    @Override
-    public Order getLazyOrders(Long id) {
-        Optional<Order> order = orderRepository.getLazyOrders(id);
-        if (order.isPresent()) {
-            return order.get();
-        }
-        throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
-    }
+//    @Override
+//    public Order getLazyOrders(Long id) {
+//        Optional<Order> order = orderRepository.getLazyOrders(id);
+//        if (order.isPresent()) {
+//            return order.get();
+//        }
+//        throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
+//    }
 
     private BigDecimal computeTotalCost(Order order) {
         BigDecimal cost = new BigDecimal(0);

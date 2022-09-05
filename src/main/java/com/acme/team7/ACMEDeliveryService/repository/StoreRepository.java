@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
-    List<Store> findStoreByName(String name);
+    List<Store> findStoresByNameOrStoreCategory_Description(String name, String description);
 
-    List<Store> findStoreByStoreCategory_Description(String description);
+    Store findStoreById(Long id);
 
 //    @Query(nativeQuery = true)
 //    List<Store> reportTopStores();
