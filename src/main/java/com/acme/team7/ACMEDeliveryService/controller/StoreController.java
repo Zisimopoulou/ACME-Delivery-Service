@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 public interface StoreController {
-    ResponseEntity<ApiResponse<List<Store>>> findByName(@RequestParam String name);
-
-    ResponseEntity<ApiResponse<List<Store>>> findStoreByStoreCategory_Description(@RequestParam String description);
+//    ResponseEntity<ApiResponse<List<Store>>> findByName(@RequestParam String name);
+//
+//    ResponseEntity<ApiResponse<List<Store>>> findStoreByStoreCategory_Description(@RequestParam String description);
 }

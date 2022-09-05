@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 @ToString(callSuper = true)
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PaymentCard {
     @CreditCardNumber
     @NotNull(message = "Card number is required.")

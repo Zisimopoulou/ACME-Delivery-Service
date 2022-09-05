@@ -25,25 +25,25 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> implements St
         return storeService;
     }
 
-    @Override
-    public ResponseEntity<ApiResponse<List<Store>>> findByName(@RequestParam String name) {
-        final List<Store> stores = storeService.findByName(name);
-        //prepei na exoume xexoristo exception gia kathe classi?
-        if (name == null) {
-            throw new NoSuchElementException("Unable to find a store with null name.");
-        }
-        return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
-    }
-
-    @Override
-    public ResponseEntity<ApiResponse<List<Store>>> findStoreByStoreCategory_Description(String description) {
-        final List<Store> stores = storeService.findByName(description);
-        //prepei na exoume xexoristo exception gia kathe classi?
-        if (description == null) {
-            throw new NoSuchElementException("Unable to find a store with null description.");
-        }
-        return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
-    }
+//    @Override
+//    public ResponseEntity<ApiResponse<List<Store>>> findByName(@RequestParam String name) {
+//        final List<Store> stores = storeService.findByName(name);
+//        //prepei na exoume xexoristo exception gia kathe classi?
+//        if (name == null) {
+//            throw new NoSuchElementException("Unable to find a store with null name.");
+//        }
+//        return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
+//    }
+//
+//    @Override
+//    public ResponseEntity<ApiResponse<List<Store>>> findStoreByStoreCategory_Description(String description) {
+//        final List<Store> stores = storeService.findByName(description);
+//        //prepei na exoume xexoristo exception gia kathe classi?
+//        if (description == null) {
+//            throw new NoSuchElementException("Unable to find a store with null description.");
+//        }
+//        return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
+//    }
 
 
 }
