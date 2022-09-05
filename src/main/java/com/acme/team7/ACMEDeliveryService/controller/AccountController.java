@@ -21,7 +21,7 @@ public class AccountController {
     public ResponseEntity<ApiResponse<Account>> findByEmail(@RequestParam String email) {
         final Account byEmail = accountService.findByEmail(email);
         if (byEmail== null) {
-            throw new NoSuchElementException("Phone not found");
+            throw new NoSuchElementException("Email not found");
         }
         return ResponseEntity.ok(ApiResponse.<Account>builder().data(byEmail).build());
     }
@@ -29,7 +29,7 @@ public class AccountController {
     public ResponseEntity<ApiResponse<Account>> findPhoneNumber(@RequestParam String phoneNumber) {
         final Account byPhoneNumber = accountService.findByEmail(phoneNumber);
         if (byPhoneNumber== null) {
-            throw new NoSuchElementException("Email not found");
+            throw new NoSuchElementException("Phone not found");
         }
         return ResponseEntity.ok(ApiResponse.<Account>builder().data(byPhoneNumber).build());
     }

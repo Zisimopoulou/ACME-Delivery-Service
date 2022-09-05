@@ -45,6 +45,7 @@ public class Account extends BaseModel{
 
     @NotNull(message = "Phone number is required")
     @Column(length = 10, nullable = false, unique = true)
+    @Pattern(regexp = "^\\\\d{10}$", message = "Phone number must be 10 digits")
     private String phoneNumber;
 
     @NotNull(message = "Age is required.")
