@@ -20,7 +20,7 @@ public class Store extends BaseModel {
 
     @Column(length = 50, nullable = false)
     @NotNull(message = "Store name is required.")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Store name must be alphabetic.")
+    @Pattern(regexp = "^[a-zA-Z ]+$", message = "Store name must be alphabetic.")
     private String name;
 
     @Column(length = 50, nullable = false)

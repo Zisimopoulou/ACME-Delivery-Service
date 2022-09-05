@@ -30,12 +30,12 @@ public class OrderItem extends BaseModel{
 
     @Min(value = 1, message = "At least one product is required.")
     @Column(nullable = false)
-    @Pattern(regexp = "[0-9]+",message = "Quantity must be an integer.")
+//    @Pattern(regexp = "[0-9]+",message = "Quantity must be an integer.")
     @NotNull(message = "Quantity of the product is required.")
     private Integer quantity;
 
     @Column(precision = 10, scale = 2, nullable = false)
     @NotNull(message = "Price is required.")
-    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Price must be numeric with at most two decimal places.")
+//    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Price must be numeric with at most two decimal places.")
     private BigDecimal price;
 }

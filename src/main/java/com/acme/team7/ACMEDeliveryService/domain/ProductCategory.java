@@ -19,7 +19,7 @@ public enum ProductCategory {
     OVEN,
     ROASTMEAT,
     DRINKS,
-    SINGEPIECE,
+    SINGLEPIECE,
     SANDWICH,
     SKEPASTES,
     POIKILIES

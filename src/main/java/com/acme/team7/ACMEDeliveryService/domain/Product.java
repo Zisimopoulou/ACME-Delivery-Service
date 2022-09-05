@@ -20,7 +20,7 @@ public class Product extends BaseModel {
 
     @Column(length = 50, nullable = false)
     @NotEmpty(message = "Name of the product is required.")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Product name must be alphabetic.")
+    @Pattern(regexp = "^[a-zA-Z ]+$", message = "Product name must be alphabetic.")
     private String name;
 
     @NotNull(message = "Product category is required.")

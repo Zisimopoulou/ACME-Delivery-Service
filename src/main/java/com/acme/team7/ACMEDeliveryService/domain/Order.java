@@ -50,7 +50,6 @@ public class Order extends BaseModel{
 
     @Column(precision = 10, scale = 2, nullable = false)
     @NotNull(message = "Total cost is required.")
-    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Total cost must be numeric with at most two decimal places.")
+//    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Total cost must be numeric with at most two decimal places.")
     private BigDecimal totalCost;
-
 }

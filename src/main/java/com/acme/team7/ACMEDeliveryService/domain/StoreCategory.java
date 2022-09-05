@@ -22,6 +22,6 @@ public class StoreCategory extends BaseModel{
 
     @Column(length = 50, nullable = false)
     @NotNull(message = "Store category description is required.")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Store categories must be alphabetic.")
+    @Pattern(regexp = "^[a-zA-Z ]+$", message = "Store categories must be alphabetic.")
     private String description;
 }
