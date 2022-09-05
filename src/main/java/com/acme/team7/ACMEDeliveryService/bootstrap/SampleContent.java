@@ -108,7 +108,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         Order firstOrder = orderService.initiateOrder(firstAccount);
         firstOrder.setSerial("0000010001");
 
-        orderService.addItem(firstOrder, storeService.getStoreProduct(louloudaki,4L), 2);
+        orderService.addItem(firstOrder, storeService.getStoreProduct(louloudaki,1L), 2);
 
 //        // Update item(s)
 //        orderService.addItem(firstOrder, productService.findBySerial("30-0-00000-1-0002"), 1);
