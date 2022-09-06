@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString(callSuper = true)
 @Builder
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -25,18 +26,22 @@ public class StoreProduct extends BaseModel {
     @Pattern(regexp = "^[a-zA-Z ]+$", message = "Store product name must be alphabetic.")
     private String name;
 
+    @EqualsAndHashCode.Exclude
     @Column(length = 100)
     @Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Store product details must be alphanumeric.") //correct pattern or empty
     private String details;
 
+    @EqualsAndHashCode.Exclude
     @Column(precision = 10, scale = 2,nullable = false)
     @NotNull(message = "Price is required.")
 //    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Price must be numeric with at most two decimal places.")
     private BigDecimal price;
 
+    @EqualsAndHashCode.Exclude
     @Column
     private String image;
 
+    @ToString.Exclude
     @ManyToOne
     @JsonIgnore
     private Store store;
