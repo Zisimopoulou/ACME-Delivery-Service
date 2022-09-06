@@ -9,7 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
@@ -106,9 +107,18 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         Account firstAccount = accountService.findByEmail("mommykmr@hotmail.red");
         Order firstOrder = orderService.initiateOrder(firstAccount);
-        firstOrder.setSerial("0000010001");
+        firstOrder.setOrderNumber("0000010001");
 
-        orderService.addItem(firstOrder, storeService.getStoreProduct(louloudaki,1L), 2);
+        Iterator<StoreProduct> storeProductIterator = louloudaki.getStoreProducts().iterator();
+        List<StoreProduct> storeProducts = new ArrayList<>();
+
+        while(storeProductIterator.hasNext()) {
+            storeProducts.add(storeProductIterator.next());
+        }
+
+        log.info(storeProducts.toString());
+
+        orderService.addItem(firstOrder, storeProducts.get(0), 2);
 
 //        // Update item(s)
 //        orderService.addItem(firstOrder, productService.findBySerial("30-0-00000-1-0002"), 1);

@@ -1,5 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -21,11 +22,11 @@ import java.math.BigDecimal;
 public class OrderItem extends BaseModel{
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @NotNull
     private StoreProduct storeProduct;
 
