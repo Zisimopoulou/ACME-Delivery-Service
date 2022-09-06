@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDER_ITEMS_SEQ", initialValue = 1, allocationSize = 1)
 public class OrderItem extends BaseModel{
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Order order;
