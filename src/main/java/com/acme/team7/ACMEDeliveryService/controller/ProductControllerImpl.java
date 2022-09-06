@@ -1,5 +1,4 @@
 package com.acme.team7.ACMEDeliveryService.controller;
-
 import com.acme.team7.ACMEDeliveryService.domain.Product;
 import com.acme.team7.ACMEDeliveryService.service.BaseService;
 import com.acme.team7.ACMEDeliveryService.service.ProductService;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.NoSuchElementException;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("Products")
