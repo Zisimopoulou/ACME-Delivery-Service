@@ -35,28 +35,6 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> implements St
     }
 
     @Override
-    @PostMapping
-    public ResponseEntity<ApiResponse<Store>> initiateStore(String name, StoreCategory storeCategory, String address) {
-        return new ResponseEntity<>(ApiResponse.<Store>builder().data(storeService.initiateStore(name, storeCategory, address)).build(),
-                HttpStatus.CREATED);
-    }
-
-    @Override
-    public void addStoreProduct(Store store, Product product, String name, String details, BigDecimal price, String image) {
-        storeService.addStoreProduct(store, product, name, details, price, image);
-    }
-
-    @Override
-    public void updateStoreProductPrice(Store store, StoreProduct storeProduct, BigDecimal price) {
-        storeService.updateStoreProductPrice(store, storeProduct, price);
-    }
-
-    @Override
-    public void removeStoreProduct(Store store, StoreProduct storeProduct) {
-        storeService.removeStoreProduct(store, storeProduct);
-    }
-
-    @Override
     public ResponseEntity<ApiResponse<StoreProduct>>  getStoreProduct(Store store, Long id){
         return new ResponseEntity<>(ApiResponse.<StoreProduct>builder().
                 data(storeService.getStoreProduct(store, id)).build(), HttpStatus.CREATED);
