@@ -3,10 +3,8 @@ package com.acme.team7.ACMEDeliveryService.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -18,14 +16,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ORDERS", indexes = {@Index(name = "ORDERS_IDX_01", columnList = "serial")})
+@Table(name = "ORDERS", indexes = {@Index(name = "ORDERS_IDX_01", columnList = "orderNumber")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel{
 
     @NotNull(message = "Serial is required.")
     @Column(length = 30, nullable = false, unique = true)
     @NotEmpty
-    private String serial;
+    private String orderNumber;
 
     @ManyToOne
     @NotNull
