@@ -43,7 +43,7 @@ spring:
                 order_updates: true
                 query:
                     in_clause_parameter_padding: true
-                generate_statistics: true # NOT a production setting
+                generate_statistics: false # NOT a production setting
                 session:
                     events:
                         log:
