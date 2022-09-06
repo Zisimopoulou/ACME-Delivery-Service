@@ -33,34 +33,5 @@ public class OrderControllerImpl extends BaseControllerImpl<Order> implements Or
         return new ResponseEntity<>(ApiResponse.<Order>builder().data(orderService.checkout(entity)).build(),
                 HttpStatus.CREATED);
     }
-
-    @Override
-    @PostMapping //na valo URL
-    public ResponseEntity<ApiResponse<Order>> initiateOrder(@Valid @RequestBody final Account account) {
-        return new ResponseEntity<>(ApiResponse.<Order>builder().data(orderService.initiateOrder(account)).build(),
-                HttpStatus.CREATED);
-    }
-
-    @Override
-    public void addItem(Order order, StoreProduct storeProduct, int quantity) {
-        orderService.addItem(order,storeProduct,quantity);
-    }
-
-    @Override
-    public void updateItem(Order order, StoreProduct storeProduct, int quantity) {
-        orderService.updateItem(order,storeProduct,quantity);
-    }
-
-    @Override
-    public void removeItem(Order order, StoreProduct storeProduct) {
-        orderService.removeItem(order,storeProduct);
-    }
-
-    @Override
-    @PutMapping //na valo URL
-    public ResponseEntity<ApiResponse<Order>> proceedToCheckout(Order order, PaymentMethod paymentMethod) {
-        return new ResponseEntity<>(ApiResponse.<Order>builder().data(orderService.proceedToCheckout(order,paymentMethod)).build(),
-                HttpStatus.CREATED);
-    }
 }
 
