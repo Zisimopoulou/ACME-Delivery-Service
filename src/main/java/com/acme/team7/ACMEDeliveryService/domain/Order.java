@@ -26,8 +26,7 @@ public class Order extends BaseModel{
     @NotEmpty
     private String orderNumber;
 
-    @ManyToOne
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull(message = "Account is required.")
     private Account account;
 
@@ -38,7 +37,7 @@ public class Order extends BaseModel{
     private Date submissionDate;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @NotNull(message = "Order items are required.")
     private Set<@NotNull OrderItem> orderItems;
 
