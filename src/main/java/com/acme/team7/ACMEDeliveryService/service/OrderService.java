@@ -16,5 +16,5 @@ public interface OrderService extends BaseService<Order> {
 
     Order proceedToCheckout(Order order, PaymentMethod paymentMethod);
 
-//    Order getLazyOrders(Long id);
+    Order getLazyOrders(Long id);
 }
