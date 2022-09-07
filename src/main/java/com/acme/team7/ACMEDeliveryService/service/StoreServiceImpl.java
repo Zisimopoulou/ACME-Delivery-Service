@@ -68,13 +68,13 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return StoreProduct.builder().store(store).product(product).name(name).details(details).price(price).image(image).build();
     }
 
-//    @Override
-//    public List<Store> reportTopStores() {
-//        return storeRepository.reportTopStores();
-//    }
-//
-//    @Override
-//    public List<Store> reportTopStoresPerCategory() {
-//        return storeRepository.reportTopStoresPerCategory();
-//    }
+    @Override
+    public List<Store> reportTopStores() {
+        return storeRepository.reportTopStores();
+    }
+
+    @Override
+    public List<Store> reportTopStoresPerCategory() {
+        return storeRepository.reportTopStoresPerCategory();
+    }
 }
