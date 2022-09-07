@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("orders")
+@RequestMapping("ORDERS")
 public class OrderControllerImpl extends BaseControllerImpl<Order> implements OrderController{
 
     private final OrderService orderService;
