@@ -15,7 +15,6 @@ import java.util.List;
 
 @Slf4j
 @Component
-
 @RequiredArgsConstructor
 public class SampleContent extends BaseComponent implements CommandLineRunner {
     private final AccountService accountService;
@@ -48,29 +47,105 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         log.info("Does customer email exist? {}.", (accountService.findByEmail("mommykmr@hotmail.red") != null));
 
         Product xoriatiki = productService.create(Product.builder().name("xoriatiki").productcategory(ProductCategory.SALAD).build());
-        Product liver = productService.create(Product.builder().name("liver").productcategory(ProductCategory.APPETISERS).build());
-        Product zucchini = productService.create(Product.builder().name("zucchini").productcategory(ProductCategory.APPETISERS).build());
-        Product redWine = productService.create(Product.builder().name("redWine").productcategory(ProductCategory.DRINKS).build());
-        Product souvlakiKotopoulo = productService.create(Product.builder().name("souvlakiKotopoulo").productcategory(ProductCategory.SOUVLAKI).build());
-        Product vanilliaFlavor = productService.create(Product.builder().name("vanilliaFlavor").productcategory(ProductCategory.ICECREAM).build());
-        Product chocolateFlavor = productService.create(Product.builder().name("chocolateFlavor").productcategory(ProductCategory.ICECREAM).build());
-        Product greekCoffee = productService.create(Product.builder().name("greekCoffee").productcategory(ProductCategory.DRINKS).build());
-        Product papoutsakia = productService.create(Product.builder().name("papoutsakia").productcategory(ProductCategory.OVEN).build());
-        Product paidakia = productService.create(Product.builder().name("tzatziki").productcategory(ProductCategory.ROASTMEAT).build());
-        Product americano = productService.create(Product.builder().name("americano").productcategory(ProductCategory.DRINKS).build());
-        Product orangeJuice = productService.create(Product.builder().name("orangeJuice").productcategory(ProductCategory.DRINKS).build());
-        Product tzatziki = productService.create(Product.builder().name("tzatziki").productcategory(ProductCategory.SAUCE).build());
+        Product vrastaXorta = productService.create(Product.builder().name("Vrasta xorta").productcategory(ProductCategory.SALAD).build());
+        Product laxano = productService.create(Product.builder().name("Laxano").productcategory(ProductCategory.SALAD).build());
+
+        Product riceNoodles = productService.create(Product.builder().name("Rice noodles").productcategory(ProductCategory.NOODLES).build());
+        Product vegieNoodles = productService.create(Product.builder().name("Vegie noodles").productcategory(ProductCategory.NOODLES).build());
+        Product eggNoodles = productService.create(Product.builder().name("Egg noodles").productcategory(ProductCategory.NOODLES).build());
+
+        Product sashimi = productService.create(Product.builder().name("Sashimi").productcategory(ProductCategory.SUSHI).build());
+        Product teriyaki = productService.create(Product.builder().name("Teriyaki").productcategory(ProductCategory.SUSHI).build());
+        Product maki = productService.create(Product.builder().name("Maki").productcategory(ProductCategory.SUSHI).build());
+        Product nigiri = productService.create(Product.builder().name("Nigiri").productcategory(ProductCategory.SUSHI).build());
+
+        Product skepastiKotopoulo = productService.create(Product.builder().name("Skepasti kotopoulo").productcategory(ProductCategory.SKEPASTES).build());
+        Product skepastiXoirino = productService.create(Product.builder().name("Skepasti xoirino").productcategory(ProductCategory.SKEPASTES).build());
+        Product skepastiMosxari = productService.create(Product.builder().name("Skepasti mosxari").productcategory(ProductCategory.SKEPASTES).build());
+        Product skepastiPanseta = productService.create(Product.builder().name("Skepasti panseta").productcategory(ProductCategory.SKEPASTES).build());
+
+        Product burgerKotopoulo = productService.create(Product.builder().name("Burger kotopoulo").productcategory(ProductCategory.BURGER).build());
+        Product burgerMosxari = productService.create(Product.builder().name("Burger mosxari").productcategory(ProductCategory.BURGER).build());
+        Product burgerXoirino = productService.create(Product.builder().name("Burger xoirino").productcategory(ProductCategory.BURGER).build());
+        Product burgerPanseta = productService.create(Product.builder().name("Burger Panseta").productcategory(ProductCategory.BURGER).build());
+
+        Product poikiliaKreatikonMikri = productService.create(Product.builder().name("Poikilia kreatikon mikri").productcategory(ProductCategory.POIKILIES).build());
+        Product poikiliaKreatikonMegali = productService.create(Product.builder().name("Poikilia kreatikon megali").productcategory(ProductCategory.POIKILIES).build());
+        Product poikiliaThalassinonMikri = productService.create(Product.builder().name("Poikilia thalassinon mikri").productcategory(ProductCategory.POIKILIES).build());
+        Product poikiliaThalassinonMegali = productService.create(Product.builder().name("Poikilia thalassinon megali").productcategory(ProductCategory.POIKILIES).build());
+
+        Product liver = productService.create(Product.builder().name("Liver").productcategory(ProductCategory.APPETIZERS).build());
+        Product zucchini = productService.create(Product.builder().name("Zucchini").productcategory(ProductCategory.APPETIZERS).build());
+        Product saganaki = productService.create(Product.builder().name("Saganaki").productcategory(ProductCategory.APPETIZERS).build());
+        Product mushrooms = productService.create(Product.builder().name("Mushrooms").productcategory(ProductCategory.APPETIZERS).build());
+        Product fava = productService.create(Product.builder().name("Fava").productcategory(ProductCategory.APPETIZERS).build());
+        Product xoxlioi = productService.create(Product.builder().name("Xoxlioi").productcategory(ProductCategory.APPETIZERS).build());
+        Product chickenWings = productService.create(Product.builder().name("Chicken wings").productcategory(ProductCategory.APPETIZERS).build());
+        Product onionRings = productService.create(Product.builder().name("Onion rings").productcategory(ProductCategory.APPETIZERS).build());
+        Product nugets = productService.create(Product.builder().name("Nugets").productcategory(ProductCategory.APPETIZERS).build());
+        Product dumplings = productService.create(Product.builder().name("Dumplings").productcategory(ProductCategory.APPETIZERS).build());
+        Product springRolls = productService.create(Product.builder().name("Spring rolls").productcategory(ProductCategory.APPETIZERS).build());
+
+        Product kalamarakia = productService.create(Product.builder().name("Kalamarakia").productcategory(ProductCategory.SEAFOOD).build());
+        Product sardeles = productService.create(Product.builder().name("Sardeles").productcategory(ProductCategory.SEAFOOD).build());
+        Product garides = productService.create(Product.builder().name("Garides").productcategory(ProductCategory.SEAFOOD).build());
+        Product mpakaliaros = productService.create(Product.builder().name("Mpakaliaros").productcategory(ProductCategory.SEAFOOD).build());
+        Product midia = productService.create(Product.builder().name("Midia").productcategory(ProductCategory.SEAFOOD).build());
+
+        Product redWine = productService.create(Product.builder().name("Red Wine").productcategory(ProductCategory.ALCOHOL).build());
+        Product whiteWine = productService.create(Product.builder().name("White Wine").productcategory(ProductCategory.ALCOHOL).build());
+        Product retsina = productService.create(Product.builder().name("Retsina").productcategory(ProductCategory.ALCOHOL).build());
+        Product raki = productService.create(Product.builder().name("Raki").productcategory(ProductCategory.ALCOHOL).build());
+        Product rakomelo = productService.create(Product.builder().name("Rakomelo").productcategory(ProductCategory.ALCOHOL).build());
+        Product tsipouro = productService.create(Product.builder().name("Tsipouro").productcategory(ProductCategory.ALCOHOL).build());
+        Product darkBeer = productService.create(Product.builder().name("Dark Beer").productcategory(ProductCategory.ALCOHOL).build());
+        Product redBeer = productService.create(Product.builder().name("Red Beer").productcategory(ProductCategory.ALCOHOL).build());
+        Product blondeBeer = productService.create(Product.builder().name("Blonde Beer").productcategory(ProductCategory.ALCOHOL).build());
+
+        Product cocaCola = productService.create(Product.builder().name("Coca Cola").productcategory(ProductCategory.ANAPSIKTIKA).build());
+        Product sprite = productService.create(Product.builder().name("Sprite").productcategory(ProductCategory.ANAPSIKTIKA).build());
+        Product mpiral = productService.create(Product.builder().name("Mpiral").productcategory(ProductCategory.ANAPSIKTIKA).build());
+
+        Product greekCoffee = productService.create(Product.builder().name("Greek Coffee").productcategory(ProductCategory.COFFEE).build());
+        Product americano = productService.create(Product.builder().name("Americano").productcategory(ProductCategory.COFFEE).build());
+        Product filterCoffee = productService.create(Product.builder().name("Filter Coffee").productcategory(ProductCategory.COFFEE).build());
+        Product fredoEspresso = productService.create(Product.builder().name("Fredo espresso").productcategory(ProductCategory.COFFEE).build());
+        Product cappuccino = productService.create(Product.builder().name("Cappuccino").productcategory(ProductCategory.COFFEE).build());
+        Product espresso = productService.create(Product.builder().name("Espresso").productcategory(ProductCategory.COFFEE).build());
+        Product frapes = productService.create(Product.builder().name("Frapes").productcategory(ProductCategory.COFFEE).build());
+
+        Product souvlakiKotopoulo = productService.create(Product.builder().name("Souvlaki Kotopoulo").productcategory(ProductCategory.SOUVLAKI).build());
+        Product souvlakiXoirino = productService.create(Product.builder().name("Souvlaki Xoirino").productcategory(ProductCategory.SOUVLAKI).build());
+        Product souvlakiMpiftekiKotopoulo = productService.create(Product.builder().name("Souvlaki Mpifteki").productcategory(ProductCategory.SOUVLAKI).build());
+        Product souvlakiPanseta = productService.create(Product.builder().name("Souvlaki Panseta").productcategory(ProductCategory.SOUVLAKI).build());
+
+        Product mpiftekiMosxarisioSxaras = productService.create(Product.builder().name("Mpifteki sxaras").productcategory(ProductCategory.SINGLEPIECE).build());
+        Product kotopouloSxaras = productService.create(Product.builder().name("Kotopoulo sxaras").productcategory(ProductCategory.SINGLEPIECE).build());
+        Product pansetaSxaras = productService.create(Product.builder().name("Panseta sxaras").productcategory(ProductCategory.SINGLEPIECE).build());
+        Product mprizolaXoirini = productService.create(Product.builder().name("Mprizola").productcategory(ProductCategory.SINGLEPIECE).build());
+
+        Product vanilliaFlavor = productService.create(Product.builder().name("Vanillia Flavor").productcategory(ProductCategory.ICECREAM).build());
+        Product chocolateFlavor = productService.create(Product.builder().name("Chocolate Flavor").productcategory(ProductCategory.ICECREAM).build());
+        Product mangoFlavor = productService.create(Product.builder().name("Mango Flavor").productcategory(ProductCategory.ICECREAM).build());
+        Product lemonFlavor = productService.create(Product.builder().name("Lemon Flavor").productcategory(ProductCategory.ICECREAM).build());
+        Product buenoFlavor = productService.create(Product.builder().name("Bueno Flavor").productcategory(ProductCategory.ICECREAM).build());
+        Product coconutFlavor = productService.create(Product.builder().name("Coconut Flavor").productcategory(ProductCategory.ICECREAM).build());
+
+        Product tzatziki = productService.create(Product.builder().name("Tzatziki").productcategory(ProductCategory.SAUCE).build());
+        Product ketchup = productService.create(Product.builder().name("Ketchup").productcategory(ProductCategory.SAUCE).build());
+        Product mayonnaise = productService.create(Product.builder().name("Mayonnaise").productcategory(ProductCategory.SAUCE).build());
+        Product mustard = productService.create(Product.builder().name("Mustard").productcategory(ProductCategory.SAUCE).build());
+        Product tirokafteri = productService.create(Product.builder().name("Tirokafteri").productcategory(ProductCategory.SAUCE).build());
+        Product skordalia = productService.create(Product.builder().name("Skordalia").productcategory(ProductCategory.SAUCE).build());
 
         StoreCategory tavern = storeCategoryService.create(StoreCategory.builder().description("Tavern").build());
         StoreCategory coffeeShop = storeCategoryService.create(StoreCategory.builder().description("Coffee Shop").build());
         StoreCategory iceCreamShop = storeCategoryService.create(StoreCategory.builder().description("Ice Cream Shop").build());
         StoreCategory souvlatzidiko = storeCategoryService.create(StoreCategory.builder().description("Souvlatzidiko").build());
-        storeCategoryService.findAll().forEach(sc -> log.info("Store category {} created.", sc));
+        StoreCategory asian = storeCategoryService.create(StoreCategory.builder().description("Asian restaurant").build());
+        StoreCategory mezedopoleio = storeCategoryService.create(StoreCategory.builder().description("Mezedopoleio").build());
 
-//        Store louloudaki = storeService.create(Store.builder().name("Louloudaki").storeCategory(tavern).address("Plateia Eleftheris 51 71303 Athens Attica").build());
-//        Store xelona = storeService.create(Store.builder().name("Xelona").storeCategory(tavern).address("Analipsi 7 70303 Athens").build());
-//        Store kagiampis = storeService.create(Store.builder().name("Kagiampis").storeCategory(tavern).address("Plateia Kornarou 51 71203 Athens Attica").build());
-//        Store pratos = storeService.create(Store.builder().name("Pratos").storeCategory(iceCreamShop).address("Dikaiosinis 51 70201 Athens Attica").build());
+        storeCategoryService.findAll().forEach(sc -> log.info("Store category {} created.", sc));
 
         Store louloudaki = storeService.initiateStore("Louloudaki",tavern,"Plateia Eleftheris 51 71303 Athens Attica");
         louloudaki.setImage("path to flower image");
@@ -80,7 +155,48 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.addStoreProduct(louloudaki,redWine,"Red wine","250 ml", BigDecimal.valueOf(2),"");
         storeService.create(louloudaki);
 
+        Store mushisi = storeService.initiateStore("Mushisi",tavern,"Plateia Makedonon 51 71203 Athens Attica");
+        mushisi.setImage("image");
+        storeService.addStoreProduct(mushisi,nugets,"Chicken Nugets","Panarismena me zoumero stithos kotopoulo kai moustarda.", BigDecimal.valueOf(6.25),"");
+        storeService.addStoreProduct(mushisi,onionRings,"Onion Rings","Traganes rodeles kremmidiou.", BigDecimal.valueOf(5),"");
+        storeService.addStoreProduct(mushisi,ketchup,"Ketchup","50 ml.", BigDecimal.valueOf(1),"");
+        storeService.addStoreProduct(mushisi,dumplings,"Shrimp dumpling","empty.", BigDecimal.valueOf(2),"");
+        storeService.create(mushisi);
+
+        Store natsume = storeService.initiateStore("Natsume",tavern,"Plateia Eleftheris 2 71303 Athens Attica");
+        natsume.setImage("image");
+        storeService.addStoreProduct(natsume,nugets,"Vegan nugets","Panarismena laxtarista nuggets, sinidevmena me patates tiganites.", BigDecimal.valueOf(7.1),"");
+        storeService.addStoreProduct(natsume,springRolls,"Apaki spring rolls","empty", BigDecimal.valueOf(5),"");
+        storeService.addStoreProduct(natsume,dumplings,"Chicken dumplings","empty", BigDecimal.valueOf(3),"");
+        storeService.create(natsume);
+
+        Store zorbas = storeService.initiateStore("Zorbas",souvlatzidiko,"Kornarou 25 71103 Athens Attica");
+        natsume.setImage("image");
+        storeService.addStoreProduct(natsume,souvlakiKotopoulo,"Souvlaki kotopoulo","Me laxano, patates, ntomata, kremmudi", BigDecimal.valueOf(3.5),"");
+        storeService.create(natsume);
+
+        Store coffeeIsland = storeService.initiateStore("Coffee Island",coffeeShop,"Makariou 5 74303 Athens Attica");
+        natsume.setImage("image");
+        storeService.addStoreProduct(natsume,greekCoffee,"Greek coffee","emoty.", BigDecimal.valueOf(2),"");
+        storeService.create(natsume);
+
+        Store xelona = storeService.initiateStore("Xelona",tavern,"Kornarou 2 70303 Athens Attica");
+        natsume.setImage("image");
+        storeService.addStoreProduct(natsume,zucchini,"Fried Zucchini","empty.", BigDecimal.valueOf(3.5),"");
+        storeService.create(xelona);
+
+        Store kagiampis = storeService.initiateStore("Kagiampis",mezedopoleio,"Katexaki 50 74303 Athens Attica");
+        natsume.setImage("image");
+        storeService.addStoreProduct(natsume,tzatziki,"Tzatziki","empty.", BigDecimal.valueOf(3.1),"");
+        storeService.create(kagiampis);
+
+        Store pratos = storeService.initiateStore("Pratos",iceCreamShop,"Katexaki 23 74303 Athens Attica");
+        natsume.setImage("image");
+        storeService.addStoreProduct(natsume,vanilliaFlavor,"Vanillia ice cream","empty.", BigDecimal.valueOf(3.1),"");
+        storeService.create(pratos);
+
         PaymentCard.builder().build();
+
 
 //                StoreProduct.builder().name("Souvlaki kotopoulo").price(BigDecimal.valueOf(4))
 //                        .product(souvlakiKotopoulo).store(louloudaki).build(),
