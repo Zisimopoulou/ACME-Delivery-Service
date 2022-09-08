@@ -157,42 +157,42 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         Store mushisi = storeService.initiateStore("Mushisi",tavern,"Plateia Makedonon 51 71203 Athens Attica");
         mushisi.setImage("image");
-        storeService.addStoreProduct(mushisi,nugets,"Chicken Nugets","Panarismena me zoumero stithos kotopoulo kai moustarda.", BigDecimal.valueOf(6.25),"");
-        storeService.addStoreProduct(mushisi,onionRings,"Onion Rings","Traganes rodeles kremmidiou.", BigDecimal.valueOf(5),"");
-        storeService.addStoreProduct(mushisi,ketchup,"Ketchup","50 ml.", BigDecimal.valueOf(1),"");
-        storeService.addStoreProduct(mushisi,dumplings,"Shrimp dumpling","empty.", BigDecimal.valueOf(2),"");
+        storeService.addStoreProduct(mushisi,nugets,"Chicken Nugets","Panarismena me zoumero stithos kotopoulo kai moustarda", BigDecimal.valueOf(6.25),"");
+        storeService.addStoreProduct(mushisi,onionRings,"Onion Rings","Traganes rodeles kremmidiou", BigDecimal.valueOf(5),"");
+        storeService.addStoreProduct(mushisi,ketchup,"Ketchup","50 ml", BigDecimal.valueOf(1),"");
+        storeService.addStoreProduct(mushisi,dumplings,"Shrimp dumpling","empty", BigDecimal.valueOf(2),"");
         storeService.create(mushisi);
 
         Store natsume = storeService.initiateStore("Natsume",tavern,"Plateia Eleftheris 2 71303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,nugets,"Vegan nugets","Panarismena laxtarista nuggets, sinidevmena me patates tiganites.", BigDecimal.valueOf(7.1),"");
+        storeService.addStoreProduct(natsume,nugets,"Vegan nugets","Panarismena laxtarista nuggets sinidevmena me patates tiganites", BigDecimal.valueOf(7.1),"");
         storeService.addStoreProduct(natsume,springRolls,"Apaki spring rolls","empty", BigDecimal.valueOf(5),"");
         storeService.addStoreProduct(natsume,dumplings,"Chicken dumplings","empty", BigDecimal.valueOf(3),"");
         storeService.create(natsume);
 
         Store zorbas = storeService.initiateStore("Zorbas",souvlatzidiko,"Kornarou 25 71103 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,souvlakiKotopoulo,"Souvlaki kotopoulo","Me laxano, patates, ntomata, kremmudi", BigDecimal.valueOf(3.5),"");
+        storeService.addStoreProduct(natsume,souvlakiKotopoulo,"Souvlaki kotopoulo","Me laxano patates ntomata kremmudi", BigDecimal.valueOf(3.5),"");
         storeService.create(natsume);
 
         Store coffeeIsland = storeService.initiateStore("Coffee Island",coffeeShop,"Makariou 5 74303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,greekCoffee,"Greek coffee","emoty.", BigDecimal.valueOf(2),"");
+        storeService.addStoreProduct(natsume,greekCoffee,"Greek coffee","emoty", BigDecimal.valueOf(2),"");
         storeService.create(natsume);
 
         Store xelona = storeService.initiateStore("Xelona",tavern,"Kornarou 2 70303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,zucchini,"Fried Zucchini","empty.", BigDecimal.valueOf(3.5),"");
+        storeService.addStoreProduct(natsume,zucchini,"Fried Zucchini","empty", BigDecimal.valueOf(3.5),"");
         storeService.create(xelona);
 
         Store kagiampis = storeService.initiateStore("Kagiampis",mezedopoleio,"Katexaki 50 74303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,tzatziki,"Tzatziki","empty.", BigDecimal.valueOf(3.1),"");
+        storeService.addStoreProduct(natsume,tzatziki,"Tzatziki","empty", BigDecimal.valueOf(3.1),"");
         storeService.create(kagiampis);
 
         Store pratos = storeService.initiateStore("Pratos",iceCreamShop,"Katexaki 23 74303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,vanilliaFlavor,"Vanillia ice cream","empty.", BigDecimal.valueOf(3.1),"");
+        storeService.addStoreProduct(natsume,vanilliaFlavor,"Vanillia ice cream","empty", BigDecimal.valueOf(3.1),"");
         storeService.create(pratos);
 
         PaymentCard.builder().build();
