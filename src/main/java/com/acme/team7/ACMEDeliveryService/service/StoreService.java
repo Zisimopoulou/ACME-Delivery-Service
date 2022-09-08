@@ -21,6 +21,8 @@ public interface StoreService extends BaseService<Store>{
 
     void removeStoreProduct(Store store, StoreProduct storeProduct);
 
+    List<StoreProduct> reportTop10StoreProducts();
+
     List<Store> reportTopStores();
 
     List<Store> reportTopStoresPerCategory();

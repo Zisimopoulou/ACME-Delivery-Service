@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -56,11 +58,18 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
 
     @Override
     public StoreProduct getStoreProduct(Store store, Long id){
-        if (store.getStoreProducts().iterator().next().getId().equals(id)) {
-            log.info("Nameee {}", store.getStoreProducts().iterator().next().getName());
-            return store.getStoreProducts().iterator().next();
+        //iterate through a set
+        Iterator<StoreProduct> storeProductIterator = store.getStoreProducts().iterator();
+        List<StoreProduct> storeProducts = new ArrayList<>();
+        while(storeProductIterator.hasNext()) {
+            storeProducts.add(storeProductIterator.next());
         }
-        log.info("Unable to find store product with name {}.", id);
+        for (StoreProduct storeProduct: storeProducts) {
+            if (storeProduct.getId().equals(id)) {
+                return storeProduct;
+            }
+        }
+        log.info("Unable to find store product with id {}.", id);
         return null;
     }
 
@@ -68,6 +77,10 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return StoreProduct.builder().store(store).product(product).name(name).details(details).price(price).image(image).build();
     }
 
+    @Override
+    public List<StoreProduct> reportTop10StoreProducts() {
+        return storeRepository.reportTop10StoreProducts();
+    }
     @Override
     public List<Store> reportTopStores() {
         return storeRepository.reportTopStores();
