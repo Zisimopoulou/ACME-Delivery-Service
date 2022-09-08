@@ -137,15 +137,15 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
     private boolean isNullOrderPayment(Order order, PaymentMethod paymentMethod) {
         if (order == null) {
-            log.warn("Invalid null order.");
+            log.error("Invalid null order.");
             return true;
         }
         if (order.getOrderItems().isEmpty()){
-            log.warn("Basket is empty.");
+            log.error("Basket is empty.");
             return true;
         }
         if (paymentMethod == null) {
-            log.warn("Invalid null payment method.");
+            log.error("Invalid null payment method.");
             return true;
         }
         return false;
