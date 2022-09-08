@@ -2,7 +2,7 @@ package com.acme.team7.ACMEDeliveryService.service;
 
 import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.StoreRepository;
-import com.acme.team7.ACMEDeliveryService.transfer.TopStoreProducts;
+import com.acme.team7.ACMEDeliveryService.transfer.TopReports;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -79,14 +79,14 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<TopStoreProducts> reportTop10StoreProducts() {
+    public List<TopReports> reportTop10StoreProducts() {
         return storeRepository.reportTop10StoreProducts();
     }
-//    @Override
-//    public List<Store> reportTopStores() {
-//        return storeRepository.reportTopStores();
-//    }
-//
+    @Override
+    public List<TopReports> reportTopStores() {
+        return storeRepository.reportTopStores();
+    }
+
 //    @Override
 //    public List<Store> reportTopStoresPerCategory() {
 //        return storeRepository.reportTopStoresPerCategory();

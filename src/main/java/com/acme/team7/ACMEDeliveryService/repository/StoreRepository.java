@@ -1,8 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.repository;
 
 import com.acme.team7.ACMEDeliveryService.domain.Store;
-import com.acme.team7.ACMEDeliveryService.domain.StoreProduct;
-import com.acme.team7.ACMEDeliveryService.transfer.TopStoreProducts;
+import com.acme.team7.ACMEDeliveryService.transfer.TopReports;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,7 +22,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
                     "  ORDER BY COUNT(STOREPRODUCT_ID) DESC \n" +
                     "  FETCH NEXT 10 ROWS ONLY",
             nativeQuery = true)
-    List<TopStoreProducts> reportTop10StoreProducts();
+    List<TopReports> reportTop10StoreProducts();
 
     @Query(
             value = "  SELECT store_id as nameOrId, COUNT(store_id) as frequency \n" +
@@ -37,7 +36,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
                     "  ORDER BY frequency DESC \n" +
                     "  FETCH NEXT 20 ROWS ONLY",
             nativeQuery = true)
-    List<TopStoreProducts> reportTopStores();
+    List<TopReports> reportTopStores();
 
 //    @Query(nativeQuery = true)
 //    List<Store> reportTopStoresPerCategory();
