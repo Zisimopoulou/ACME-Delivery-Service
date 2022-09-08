@@ -17,11 +17,11 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
     public JpaRepository<Product, Long> getRepository() {
         return productRepository;
     }
-
-    @Override
-    public List<Product>reportTopProducts() {
-        return productRepository.reportTopProducts();
-    }
+//
+//    @Override
+//    public List<Product>reportTopProducts() {
+//        return productRepository.reportTopProducts();
+//    }
     @Override
     public Product findByName(final String name) {
         return productRepository.findProductByName(name);
