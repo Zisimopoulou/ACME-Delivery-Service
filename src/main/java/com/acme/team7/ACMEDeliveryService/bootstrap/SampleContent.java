@@ -155,7 +155,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.addStoreProduct(louloudaki,redWine,"Red wine","250 ml", BigDecimal.valueOf(2),"");
         storeService.create(louloudaki);
 
-        Store mushisi = storeService.initiateStore("Mushisi",tavern,"Plateia Makedonon 51 71203 Athens Attica");
+        Store mushisi = storeService.initiateStore("Mushisi",asian,"Plateia Makedonon 51 71203 Athens Attica");
         mushisi.setImage("image");
         storeService.addStoreProduct(mushisi,nugets,"Chicken Nugets","Panarismena me zoumero stithos kotopoulo kai moustarda", BigDecimal.valueOf(6.25),"");
         storeService.addStoreProduct(mushisi,onionRings,"Onion Rings","Traganes rodeles kremmidiou", BigDecimal.valueOf(5),"");
@@ -163,7 +163,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.addStoreProduct(mushisi,dumplings,"Shrimp dumpling","empty", BigDecimal.valueOf(2),"");
         storeService.create(mushisi);
 
-        Store natsume = storeService.initiateStore("Natsume",tavern,"Plateia Eleftheris 2 71303 Athens Attica");
+        Store natsume = storeService.initiateStore("Natsume",asian,"Plateia Eleftheris 2 71303 Athens Attica");
         natsume.setImage("image");
         storeService.addStoreProduct(natsume,nugets,"Vegan nugets","Panarismena laxtarista nuggets sinidevmena me patates tiganites", BigDecimal.valueOf(7.1),"");
         storeService.addStoreProduct(natsume,springRolls,"Apaki spring rolls","empty", BigDecimal.valueOf(5),"");
@@ -297,7 +297,10 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.proceedToCheckout(elevenOrder,PaymentMethod.CASH);
         orderService.checkout(elevenOrder);
 
-        storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with id {}, has frequency {}.", tp.getStoreProductId(),tp.getFrequency()));
+        log.info("-----Top 10 store products-----");
+        storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with name {}, appears with frequency {}.", tp.getNameOrId(),tp.getFrequency()));
+        log.info("-----Most famous stores based on orders-----");
+        storeService.reportTopStores().forEach(tp -> log.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getNameOrId())).getName(),tp.getFrequency()));
 
     }
 }
