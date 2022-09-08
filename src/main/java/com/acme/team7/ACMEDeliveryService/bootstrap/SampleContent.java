@@ -169,30 +169,30 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.addStoreProduct(natsume,springRolls,"Apaki spring rolls","empty", BigDecimal.valueOf(5),"");
         storeService.addStoreProduct(natsume,dumplings,"Chicken dumplings","empty", BigDecimal.valueOf(3),"");
         storeService.create(natsume);
-
+//pos apotrepeis apo to na gineei overwrite ena magazi me idio declaration ? warning ktlp
         Store zorbas = storeService.initiateStore("Zorbas",souvlatzidiko,"Kornarou 25 71103 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,souvlakiKotopoulo,"Souvlaki kotopoulo","Me laxano patates ntomata kremmudi", BigDecimal.valueOf(3.5),"");
-        storeService.create(natsume);
+        storeService.addStoreProduct(zorbas,souvlakiKotopoulo,"Souvlaki kotopoulo","Me laxano patates ntomata kremmudi", BigDecimal.valueOf(3.5),"");
+        storeService.create(zorbas);
 
         Store coffeeIsland = storeService.initiateStore("Coffee Island",coffeeShop,"Makariou 5 74303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,greekCoffee,"Greek coffee","emoty", BigDecimal.valueOf(2),"");
-        storeService.create(natsume);
+        storeService.addStoreProduct(coffeeIsland,greekCoffee,"Greek coffee","emoty", BigDecimal.valueOf(2),"");
+        storeService.create(coffeeIsland);
 
         Store xelona = storeService.initiateStore("Xelona",tavern,"Kornarou 2 70303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,zucchini,"Fried Zucchini","empty", BigDecimal.valueOf(3.5),"");
+        storeService.addStoreProduct(xelona,zucchini,"Fried Zucchini","empty", BigDecimal.valueOf(3.5),"");
         storeService.create(xelona);
 
         Store kagiampis = storeService.initiateStore("Kagiampis",mezedopoleio,"Katexaki 50 74303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,tzatziki,"Tzatziki","empty", BigDecimal.valueOf(3.1),"");
+        storeService.addStoreProduct(kagiampis,tzatziki,"Tzatziki","empty", BigDecimal.valueOf(3.1),"");
         storeService.create(kagiampis);
 
         Store pratos = storeService.initiateStore("Pratos",iceCreamShop,"Katexaki 23 74303 Athens Attica");
         natsume.setImage("image");
-        storeService.addStoreProduct(natsume,vanilliaFlavor,"Vanillia ice cream","empty", BigDecimal.valueOf(3.1),"");
+        storeService.addStoreProduct(pratos,vanilliaFlavor,"Vanillia ice cream","empty", BigDecimal.valueOf(3.1),"");
         storeService.create(pratos);
 
         PaymentCard.builder().build();
@@ -224,45 +224,78 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         Account firstAccount = accountService.findByEmail("mommykmr@hotmail.red");
         Order firstOrder = orderService.initiateOrder(firstAccount);
         firstOrder.setOrderNumber("0000010001");
-
-        Iterator<StoreProduct> storeProductIterator = louloudaki.getStoreProducts().iterator();
-        List<StoreProduct> storeProducts = new ArrayList<>();
-
-        while(storeProductIterator.hasNext()) {
-            storeProducts.add(storeProductIterator.next());
-        }
-
-        log.info(storeProducts.toString());
-
-        orderService.addItem(firstOrder, storeProducts.get(0), 2);
-
-//        // Update item(s)
-//        orderService.addItem(firstOrder, productService.findBySerial("30-0-00000-1-0002"), 1);
-//        orderService.updateItem(firstOrder, productService.findBySerial("30-0-00000-1-0002"), 2);
-//        // Remove item(s)
-//        orderService.removeItem(firstOrder, productService.findBySerial("30-0-00000-1-0003"));
-
+        orderService.addItem(firstOrder, storeService.getStoreProduct(louloudaki, 2L), 2);
+        orderService.addItem(firstOrder, storeService.getStoreProduct(louloudaki, 1L), 2);
+        orderService.addItem(firstOrder, storeService.getStoreProduct(louloudaki, 3L), 2);
         orderService.proceedToCheckout(firstOrder,PaymentMethod.CASH);
         orderService.checkout(firstOrder);
-//
-//        Account secondCustomer = accountService.get(2L);
-//        Order secondOrder = orderService.initiateOrder(secondCustomer);
-//        secondOrder.setSerial("0000010002");
-//
-//        orderService.addItem(secondOrder, productService.findBySerial("30-0-00000-2-0001"), 1);
-//        orderService.addItem(secondOrder, productService.findBySerial("30-0-00000-2-0002"), 1);
-//        orderService.proceedToCheckout(secondOrder,PaymentMethod.CASH);
-//        orderService.checkout(secondOrder);
-//
-//        Account thirdAccount = accountService.findByPhoneNumber("6984072273");
-//        Order thirdOrder = orderService.initiateOrder(thirdAccount);
-//        thirdOrder.setSerial("0000010003");
-//
-//        orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0001"), 3);
-//        orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0002"), 2);
-//        orderService.addItem(thirdOrder, productService.findBySerial("30-0-00000-3-0003"), 1);
-//        orderService.proceedToCheckout(thirdOrder,PaymentMethod.PAYMENT_CARD);
-//        orderService.checkout(thirdOrder);
+
+        Account secondCustomer = accountService.findByPhoneNumber("6971078143");
+        Order secondOrder = orderService.initiateOrder(secondCustomer);
+        orderService.addItem(secondOrder, storeService.getStoreProduct(natsume, 9L), 2);
+        orderService.addItem(secondOrder, storeService.getStoreProduct(natsume, 10L), 2);
+        secondOrder.setOrderNumber("0000010002");
+        orderService.proceedToCheckout(secondOrder,PaymentMethod.CASH);
+        orderService.checkout(secondOrder);
+
+        Account thirdAccount = accountService.findByPhoneNumber("6948361237");
+        Order thirdOrder = orderService.initiateOrder(thirdAccount);
+        orderService.addItem(thirdOrder, storeService.getStoreProduct(natsume, 11L), 2);
+        orderService.addItem(thirdOrder, storeService.getStoreProduct(natsume, 9L), 2);
+        orderService.addItem(thirdOrder, storeService.getStoreProduct(natsume, 10L), 2);
+        thirdOrder.setOrderNumber("0000010003");
+        orderService.proceedToCheckout(thirdOrder,PaymentMethod.CASH);
+        orderService.checkout(thirdOrder);
+
+        Order fourthOrder = orderService.initiateOrder(firstAccount);
+        orderService.addItem(fourthOrder, storeService.getStoreProduct(louloudaki, 2L), 2);
+        orderService.addItem(fourthOrder, storeService.getStoreProduct(louloudaki, 1L), 2);
+        fourthOrder.setOrderNumber("0000010004");
+        orderService.proceedToCheckout(fourthOrder,PaymentMethod.CASH);
+        orderService.checkout(fourthOrder);
+
+        Order fifthOrder = orderService.initiateOrder(firstAccount);
+        orderService.addItem(fifthOrder, storeService.getStoreProduct(louloudaki, 2L), 2);
+        orderService.addItem(fifthOrder, storeService.getStoreProduct(louloudaki, 4L), 2);
+        fifthOrder.setOrderNumber("0000010005");
+        orderService.proceedToCheckout(fifthOrder,PaymentMethod.CASH);
+        orderService.checkout(fifthOrder);
+
+        Order sixthOrder = orderService.initiateOrder(secondCustomer);
+        orderService.addItem(sixthOrder, storeService.getStoreProduct(mushisi, 5L), 2);
+        sixthOrder.setOrderNumber("0000010006");
+        orderService.proceedToCheckout(sixthOrder,PaymentMethod.CASH);
+        orderService.checkout(sixthOrder);
+
+        Order seventhOrder = orderService.initiateOrder(thirdAccount);
+        orderService.addItem(seventhOrder, storeService.getStoreProduct(kagiampis, 15L), 2);
+        seventhOrder.setOrderNumber("0000010007");
+        orderService.proceedToCheckout(seventhOrder,PaymentMethod.CASH);
+        orderService.checkout(seventhOrder);
+
+        Order eightOrder = orderService.initiateOrder(firstAccount);
+        orderService.addItem(eightOrder, storeService.getStoreProduct(pratos, 16L), 2);
+        eightOrder.setOrderNumber("0000010008");
+        orderService.proceedToCheckout(eightOrder,PaymentMethod.CASH);
+        orderService.checkout(eightOrder);
+
+        Order nineOrder = orderService.initiateOrder(firstAccount);
+        orderService.addItem(nineOrder, storeService.getStoreProduct(coffeeIsland, 13L), 2);
+        nineOrder.setOrderNumber("0000010009");
+        orderService.proceedToCheckout(nineOrder,PaymentMethod.CASH);
+        orderService.checkout(nineOrder);
+
+        Order tenOrder = orderService.initiateOrder(firstAccount);
+        orderService.addItem(tenOrder, storeService.getStoreProduct(kagiampis, 15L), 2);
+        tenOrder.setOrderNumber("0000010010");
+        orderService.proceedToCheckout(tenOrder,PaymentMethod.CASH);
+        orderService.checkout(tenOrder);
+
+        Order elevenOrder = orderService.initiateOrder(firstAccount);
+        orderService.addItem(elevenOrder, storeService.getStoreProduct(coffeeIsland, 13L), 2);
+        elevenOrder.setOrderNumber("0000010011");
+        orderService.proceedToCheckout(elevenOrder,PaymentMethod.CASH);
+        orderService.checkout(elevenOrder);
 
     }
 }
