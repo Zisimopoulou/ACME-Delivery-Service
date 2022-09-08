@@ -22,10 +22,10 @@ import java.math.BigDecimal;
 public class OrderItem extends BaseModel{
 
     @ToString.Exclude
-    @ManyToOne
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Order order;
-
+//gt an valo to fetch = FetchType.LAZY sto storeproduct den kanei get ta orders?
     @ManyToOne
     @NotNull
     private StoreProduct storeProduct;
