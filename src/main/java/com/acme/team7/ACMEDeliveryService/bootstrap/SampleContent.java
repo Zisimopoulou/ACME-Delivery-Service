@@ -297,5 +297,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.proceedToCheckout(elevenOrder,PaymentMethod.CASH);
         orderService.checkout(elevenOrder);
 
+        storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with id {}, has frequency {}.", tp.getStoreProductId(),tp.getFrequency()));
+
     }
 }
