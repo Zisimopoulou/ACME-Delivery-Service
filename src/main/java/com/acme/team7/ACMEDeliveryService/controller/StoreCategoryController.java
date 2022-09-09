@@ -1,4 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.controller;
 
-public interface StoreCategoryController {
+import com.acme.team7.ACMEDeliveryService.domain.StoreCategory;
+
+public interface StoreCategoryController extends BaseController<StoreCategory> {
 }
