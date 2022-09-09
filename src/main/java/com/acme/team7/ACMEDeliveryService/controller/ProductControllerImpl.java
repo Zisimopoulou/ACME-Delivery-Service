@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.NoSuchElementException;
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("Products")
+@RequestMapping("PRODUCTS")
 
 public class ProductControllerImpl extends BaseControllerImpl<Product> implements ProductController{
     private final ProductService productService;
