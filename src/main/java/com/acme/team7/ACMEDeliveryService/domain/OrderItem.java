@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 public class OrderItem extends BaseModel{
 
     @ToString.Exclude
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Order order;
