@@ -38,6 +38,23 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
             nativeQuery = true)
     List<TopReports> reportTopStores();
 
-//    @Query(nativeQuery = true)
-//    List<Store> reportTopStoresPerCategory();
+    @Query(
+            value = "SELECT store_id as nameOrId, COUNT(store_id) as frequency \n" +
+                    "FROM (\n" +
+                    "        SELECT order_id, store_id \n" +
+                    "        FROM ORDER_ITEMS \n" +
+                    "        INNER JOIN (\n" +
+                    "                    SELECT store_id, storeproduct.id as spid \n" +
+                    "                    FROM STOREPRODUCT \n" +
+                    "                    INNER JOIN STORES ON stores.id=storeproduct.store_id \n" +
+                    "                    WHERE storecategory_id=? \n" +
+                    "                    )\n" +
+                    "        ON spid=order_items.storeproduct_id \n" +
+                    "        Group by order_id, store_id \n" +
+                    "    )\n" +
+                    "GROUP BY store_id \n" +
+                    "ORDER BY frequency DESC \n" +
+                    "FETCH NEXT 10 ROWS ONLY",
+            nativeQuery = true)
+    List<TopReports> reportTopStoresPerCategory(Long id);
 }

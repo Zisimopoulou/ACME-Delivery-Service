@@ -180,7 +180,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.addStoreProduct(coffeeIsland,greekCoffee,"Greek coffee","emoty", BigDecimal.valueOf(2),"");
         storeService.create(coffeeIsland);
 
-        Store xelona = storeService.initiateStore("Xelona",tavern,"Kornarou 2 70303 Athens Attica");
+        Store xelona = storeService.initiateStore("Xelona",mezedopoleio,"Kornarou 2 70303 Athens Attica");
         natsume.setImage("image");
         storeService.addStoreProduct(xelona,zucchini,"Fried Zucchini","empty", BigDecimal.valueOf(3.5),"");
         storeService.create(xelona);
@@ -301,6 +301,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with name {}, appears with frequency {}.", tp.getNameOrId(),tp.getFrequency()));
         log.info("-----Most famous stores based on orders-----");
         storeService.reportTopStores().forEach(tp -> log.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getNameOrId())).getName(),tp.getFrequency()));
-
-    }
+        log.info("-----Most famous stores per category based on orders-----");
+        storeService.reportTopStoresPerCategory(5L).forEach( tp->log.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getNameOrId())).getName(),tp.getFrequency()));
+      }
 }

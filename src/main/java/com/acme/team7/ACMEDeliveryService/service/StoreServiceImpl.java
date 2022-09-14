@@ -87,8 +87,8 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return storeRepository.reportTopStores();
     }
 
-//    @Override
-//    public List<Store> reportTopStoresPerCategory() {
-//        return storeRepository.reportTopStoresPerCategory();
-//    }
+    @Override
+    public List<TopReports> reportTopStoresPerCategory(Long id) {
+        return storeRepository.reportTopStoresPerCategory(id);
+    }
 }

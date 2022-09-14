@@ -26,5 +26,5 @@ public interface StoreService extends BaseService<Store>{
 
     List<TopReports> reportTopStores();
 
-//    List<Store> reportTopStoresPerCategory();
+    List<TopReports> reportTopStoresPerCategory(Long id);
 }
