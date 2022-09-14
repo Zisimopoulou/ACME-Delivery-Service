@@ -2,6 +2,7 @@ package com.acme.team7.ACMEDeliveryService.service;
 
 import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.StoreRepository;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import com.acme.team7.ACMEDeliveryService.transfer.TopReports;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -79,7 +80,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<TopReports> reportTop10StoreProducts() {
+    public List<KeyValue<String, Long>> reportTop10StoreProducts() {
         return storeRepository.reportTop10StoreProducts();
     }
     @Override

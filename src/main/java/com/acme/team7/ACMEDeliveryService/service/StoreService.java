@@ -4,6 +4,7 @@ import com.acme.team7.ACMEDeliveryService.domain.Product;
 import com.acme.team7.ACMEDeliveryService.domain.Store;
 import com.acme.team7.ACMEDeliveryService.domain.StoreCategory;
 import com.acme.team7.ACMEDeliveryService.domain.StoreProduct;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import com.acme.team7.ACMEDeliveryService.transfer.TopReports;
 
 import java.math.BigDecimal;
@@ -22,7 +23,7 @@ public interface StoreService extends BaseService<Store>{
 
     void removeStoreProduct(Store store, StoreProduct storeProduct);
 
-    List<TopReports> reportTop10StoreProducts();
+    List<KeyValue<String, Long>> reportTop10StoreProducts();
 
     List<TopReports> reportTopStores();
 

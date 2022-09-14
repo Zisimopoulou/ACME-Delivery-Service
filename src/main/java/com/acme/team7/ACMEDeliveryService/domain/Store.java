@@ -1,11 +1,34 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
+import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
+
+@NamedNativeQuery(name = "Store.ReportTop10StoreProducts",
+        query ="""
+			SELECT STOREPRODUCT_ID as storeProductId, COUNT(STOREPRODUCT_ID) as frequency
+            FROM ORDER_ITEMS
+            INNER JOIN STOREPRODUCT ON STOREPRODUCT.ID=ORDER_ITEMS.STOREPRODUCT_ID
+            GROUP BY STOREPRODUCT_ID
+            ORDER BY COUNT(STOREPRODUCT_ID) DESC
+            FETCH NEXT 10 ROWS ONLY
+			""",
+        resultSetMapping = "ReportTop10StoreProducts")
+@SqlResultSetMapping(name = "ReportTop10StoreProducts",
+        classes = @ConstructorResult(
+                targetClass = KeyValue.class,
+                columns = {
+                        @ColumnResult(name = "storeProductId", type = String.class),
+                        @ColumnResult(name = "frequency", type = Long.class)
+                }
+        )
+)
+
+
 
 @Getter
 @Setter
