@@ -84,12 +84,12 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return storeRepository.reportTop10StoreProducts();
     }
     @Override
-    public List<TopReports> reportTopStores() {
+    public List<KeyValue<String, Long>> reportTopStores() {
         return storeRepository.reportTopStores();
     }
 
     @Override
-    public List<TopReports> reportTopStoresPerCategory(Long id) {
+    public List<KeyValue<String, Long>> reportTopStoresPerCategory(Long id) {
         return storeRepository.reportTopStoresPerCategory(id);
     }
 }

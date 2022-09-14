@@ -25,7 +25,7 @@ public interface StoreService extends BaseService<Store>{
 
     List<KeyValue<String, Long>> reportTop10StoreProducts();
 
-    List<TopReports> reportTopStores();
+    List<KeyValue<String, Long>> reportTopStores();
 
-    List<TopReports> reportTopStoresPerCategory(Long id);
+    List<KeyValue<String, Long>> reportTopStoresPerCategory(Long id);
 }

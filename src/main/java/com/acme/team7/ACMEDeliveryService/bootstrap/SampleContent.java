@@ -298,10 +298,10 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.checkout(elevenOrder);
 
         log.info("-----Top 10 store products-----");
-        storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with name {}, appears with frequency {}.", tp.getNameOrId(),tp.getFrequency()));
+        storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with id {}, appears with frequency {}.", tp.getKey(),tp.getValue()));
         log.info("-----Most famous stores based on orders-----");
-        storeService.reportTopStores().forEach(tp -> log.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getNameOrId())).getName(),tp.getFrequency()));
+        storeService.reportTopStores().forEach(tp -> log.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
         log.info("-----Most famous stores per category based on orders-----");
-        storeService.reportTopStoresPerCategory(5L).forEach( tp->log.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getNameOrId())).getName(),tp.getFrequency()));
+        storeService.reportTopStoresPerCategory(5L).forEach( tp->log.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
       }
 }

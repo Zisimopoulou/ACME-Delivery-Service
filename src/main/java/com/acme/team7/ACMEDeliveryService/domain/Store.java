@@ -2,6 +2,7 @@ package com.acme.team7.ACMEDeliveryService.domain;
 
 import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import lombok.*;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,7 +29,59 @@ import java.util.Set;
         )
 )
 
+@NamedNativeQuery(name = "Store.ReportTopStores",
+        query ="""
+			SELECT store_id as storeId, COUNT(store_id) as frequency
+            FROM (
+            SELECT order_id, store_id
+            FROM ORDER_ITEMS
+            INNER JOIN STOREPRODUCT ON storeproduct.id=order_items.storeproduct_id
+            Group by order_id, store_id
+                   )
+            GROUP BY store_id
+            ORDER BY frequency DESC
+            FETCH NEXT 20 ROWS ONLY
+			""",
+        resultSetMapping = "ReportTopStores")
+@SqlResultSetMapping(name = "ReportTopStores",
+        classes = @ConstructorResult(
+                targetClass = KeyValue.class,
+                columns = {
+                        @ColumnResult(name = "storeId", type = String.class),
+                        @ColumnResult(name = "frequency", type = Long.class)
+                }
+        )
+)
 
+@NamedNativeQuery(name = "Store.ReportTopStoresPerCategory",
+        query ="""
+			SELECT store_id as storeId, COUNT(store_id) as frequency
+            FROM (
+                       SELECT order_id, store_id
+                       FROM ORDER_ITEMS
+                       INNER JOIN (
+                                    SELECT store_id, storeproduct.id as spid
+                                    FROM STOREPRODUCT
+                                    INNER JOIN STORES ON stores.id=storeproduct.store_id
+                                    WHERE storecategory_id=?
+                                   )
+                       ON spid=order_items.storeproduct_id 
+                       Group by order_id, store_id 
+                   )
+                       GROUP BY store_id
+                       ORDER BY frequency DESC
+                       FETCH NEXT 10 ROWS ONLY
+			""",
+        resultSetMapping = "ReportTopStoresPerCategory")
+@SqlResultSetMapping(name = "ReportTopStoresPerCategory",
+        classes = @ConstructorResult(
+                targetClass = KeyValue.class,
+                columns = {
+                        @ColumnResult(name = "storeId", type = String.class),
+                        @ColumnResult(name = "frequency", type = Long.class)
+                }
+        )
+)
 
 @Getter
 @Setter
