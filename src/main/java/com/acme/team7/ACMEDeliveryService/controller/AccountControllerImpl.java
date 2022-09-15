@@ -14,8 +14,8 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("ACCOUNTS")
-public class AccountControllerImpl extends BaseControllerImpl<Account> implements AccountController{
+@RequestMapping("accounts")
+public class AccountControllerImpl extends BaseControllerImpl<Account> {
     private final AccountService accountService;
     @Override
     public BaseService<Account> getBaseService() {
