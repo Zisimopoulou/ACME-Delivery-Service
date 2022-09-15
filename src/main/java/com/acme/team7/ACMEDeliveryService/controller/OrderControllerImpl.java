@@ -1,9 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.controller;
 
-import com.acme.team7.ACMEDeliveryService.domain.Account;
 import com.acme.team7.ACMEDeliveryService.domain.Order;
-import com.acme.team7.ACMEDeliveryService.domain.PaymentMethod;
-import com.acme.team7.ACMEDeliveryService.domain.StoreProduct;
 import com.acme.team7.ACMEDeliveryService.service.BaseService;
 import com.acme.team7.ACMEDeliveryService.service.OrderService;
 import com.acme.team7.ACMEDeliveryService.transfer.ApiResponse;
@@ -16,8 +13,8 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("ORDERS")
-public class OrderControllerImpl extends BaseControllerImpl<Order> implements OrderController{
+@RequestMapping("orders")
+public class OrderControllerImpl extends BaseControllerImpl<Order> {
 
     private final OrderService orderService;
 

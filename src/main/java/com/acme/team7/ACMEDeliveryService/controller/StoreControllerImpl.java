@@ -15,9 +15,9 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("STORES")
+@RequestMapping("stores")
 @CrossOrigin
-public class StoreControllerImpl extends BaseControllerImpl<Store> implements StoreController {
+public class StoreControllerImpl extends BaseControllerImpl<Store> {
 
     private final StoreService storeService;
 
@@ -25,7 +25,7 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> implements St
     public BaseService<Store> getBaseService() {
         return storeService;
     }
-    @Override
+
     public ResponseEntity<ApiResponse<List<Store>>> findStoreByStoreCategory_Description(String name, String description) {
         final List<Store> stores = storeService.findStoresByNameOrStoreCategory_Description(name, description);
         if (description == null) {
@@ -34,13 +34,13 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> implements St
         return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
     }
 
-    @Override
+
     @GetMapping("reportTop10StoreProducts")
     public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTop10StoreProducts() {
         return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTop10StoreProducts()).build());
     }
 
-    @Override
+
     @GetMapping("reportTopStores")
     public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTopStores() {
         return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTopStores()).build());

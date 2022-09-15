@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("storecategories")
-public class StoreCategoryControllerImpl extends BaseControllerImpl<StoreCategory> implements StoreCategoryController {
+public class StoreCategoryControllerImpl extends BaseControllerImpl<StoreCategory> {
     private final StoreCategoryService storeCategoryService;
     @Override
     public BaseService<StoreCategory> getBaseService() {
