@@ -2,6 +2,8 @@ package com.acme.team7.ACMEDeliveryService.service;
 
 import com.acme.team7.ACMEDeliveryService.domain.*;
 
+import java.util.List;
+
 public interface OrderService extends BaseService<Order> {
 
     Order initiateOrder(Account account);
@@ -17,4 +19,6 @@ public interface OrderService extends BaseService<Order> {
     Order proceedToCheckout(Order order, PaymentMethod paymentMethod);
 
     Order getLazyOrders(Long id);
+
+    List<Order> findOrdersByAccount(Account account);
 }

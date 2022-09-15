@@ -119,6 +119,11 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
     }
 
+    @Override
+    public List<Order> findOrdersByAccount(Account account) {
+        return  orderRepository.findOrdersByAccount(account);
+    }
+
     private BigDecimal computeTotalCost(Order order) {
         BigDecimal cost = new BigDecimal(0);
         for (OrderItem orderItem : order.getOrderItems()) {
