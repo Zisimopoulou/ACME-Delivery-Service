@@ -1,7 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -41,8 +41,7 @@ public class StoreProduct extends BaseModel {
     @Column
     private String image;
 
-    @ToString.Exclude
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Store store;
 

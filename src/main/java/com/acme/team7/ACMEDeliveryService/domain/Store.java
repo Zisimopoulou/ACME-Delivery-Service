@@ -1,6 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
 import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.jpa.repository.Query;
 
@@ -113,6 +114,6 @@ public class Store extends BaseModel {
 
     @ToString.Exclude
     @NotNull(message = "Store products are required.")
-    @OneToMany(mappedBy = "store",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "store",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<@NotNull StoreProduct> storeProducts;
 }

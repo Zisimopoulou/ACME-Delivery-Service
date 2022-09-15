@@ -37,7 +37,7 @@ public class Order extends BaseModel{
     private Date submissionDate;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @NotNull(message = "Order items are required.")
     private Set<@NotNull OrderItem> orderItems;
 

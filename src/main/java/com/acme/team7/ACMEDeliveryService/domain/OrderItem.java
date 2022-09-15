@@ -1,8 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,12 +20,11 @@ import java.math.BigDecimal;
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDER_ITEMS_SEQ", initialValue = 1, allocationSize = 1)
 public class OrderItem extends BaseModel{
 
-    @ToString.Exclude
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     @JsonIgnore
     private Order order;
-//gt an valo to fetch = FetchType.LAZY sto storeproduct den kanei get ta orders?
+
     @ManyToOne
     @NotNull
     private StoreProduct storeProduct;
