@@ -1,5 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
+import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -9,6 +10,23 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
+
+@NamedNativeQuery(name = "Store.GetLazyStores",
+        query ="""
+			SELECT stores.id as storeId, stores.name as store_name, stores.image as store_image
+            FROM STORES
+			""",
+        resultSetMapping = "GetLazyStores")
+@SqlResultSetMapping(name = "GetLazyStores",
+        classes = @ConstructorResult(
+                targetClass = KeyTwoValues.class,
+                columns = {
+                        @ColumnResult(name = "storeId", type = String.class),
+                        @ColumnResult(name = "store_name", type = String.class),
+                        @ColumnResult(name = "store_image", type = String.class)
+                }
+        )
+)
 
 @NamedNativeQuery(name = "Store.ReportTop10StoreProducts",
         query ="""

@@ -4,8 +4,8 @@ import com.acme.team7.ACMEDeliveryService.domain.Product;
 import com.acme.team7.ACMEDeliveryService.domain.Store;
 import com.acme.team7.ACMEDeliveryService.domain.StoreCategory;
 import com.acme.team7.ACMEDeliveryService.domain.StoreProduct;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
-import com.acme.team7.ACMEDeliveryService.transfer.TopReports;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,4 +28,6 @@ public interface StoreService extends BaseService<Store>{
     List<KeyValue<String, Long>> reportTopStores();
 
     List<KeyValue<String, Long>> reportTopStoresPerCategory(Long id);
+
+    List<KeyTwoValues<String, String, String>> getLazyStores();
 }
