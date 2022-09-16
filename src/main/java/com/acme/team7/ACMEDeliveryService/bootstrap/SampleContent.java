@@ -147,8 +147,8 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         storeCategoryService.findAll().forEach(sc -> log.info("Store category {} created.", sc));
 
-        Store louloudaki = storeService.initiateStore("Louloudaki",tavern,"Plateia Eleftheris 51 71303 Athens Attica");
-        louloudaki.setImage("path to flower image");
+        Store louloudaki = storeService.initiateStore("Louloudaki",mezedopoleio,"Plateia Eleftheris 51 71303 Athens Attica");
+        louloudaki.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/304138197_490310123099500_3228594208283622768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=Wj9MigUQ7xUAX8ssch0&_nc_oc=AQmQoUhCmVKCDMxj3ZuPQ5pPkGhjGnqjlQdUsc_eO2OvuxrZ2BYb1yTe6LPuzujBfE0&_nc_ht=scontent.fath4-2.fna&oh=00_AT_IyYwBo2kdevjh7lZ_M4SNoh8UT33T628kHfuVmT-1uA&oe=632A12C2");
         storeService.addStoreProduct(louloudaki,xoriatiki,"Louloudaki Salad","With vinegar sauce and manouri cheese", BigDecimal.valueOf(4.5),"");
         storeService.addStoreProduct(louloudaki,liver,"Fried Liver","empty", BigDecimal.valueOf(5),"");
         storeService.addStoreProduct(louloudaki,zucchini,"Fried Zucchini","empty", BigDecimal.valueOf(3),"");
@@ -156,7 +156,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.create(louloudaki);
 
         Store mushisi = storeService.initiateStore("Mushisi",asian,"Plateia Makedonon 51 71203 Athens Attica");
-        mushisi.setImage("image");
+        mushisi.setImage("http://d20aeo683mqd6t.cloudfront.net/articles/title_images/000/027/021/medium/pixta_18413006_S.jpg?2017");
         storeService.addStoreProduct(mushisi,nugets,"Chicken Nugets","Panarismena me zoumero stithos kotopoulo kai moustarda", BigDecimal.valueOf(6.25),"");
         storeService.addStoreProduct(mushisi,onionRings,"Onion Rings","Traganes rodeles kremmidiou", BigDecimal.valueOf(5),"");
         storeService.addStoreProduct(mushisi,ketchup,"Ketchup","50 ml", BigDecimal.valueOf(1),"");
@@ -164,34 +164,34 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeService.create(mushisi);
 
         Store natsume = storeService.initiateStore("Natsume",asian,"Plateia Eleftheris 2 71303 Athens Attica");
-        natsume.setImage("image");
+        natsume.setImage("https://uploads-ssl.webflow.com/5c30841dedb5fd496eb1396c/6187a221326ced5eb2c9cfaa_tF2XDzMDsn0z7ohkrivsEAXIOEthWAUI8-QTJzmdMX9f-gIMLh9Utkflej5xn9B5w0YWy_O4rIIJ9T7s5o4hgaPNlaN7uEmMDMkWWIEDutos4gGA4wkdCy7lneP-6axP_cnQrYKi.png");
         storeService.addStoreProduct(natsume,nugets,"Vegan nugets","Panarismena laxtarista nuggets sinidevmena me patates tiganites", BigDecimal.valueOf(7.1),"");
         storeService.addStoreProduct(natsume,springRolls,"Apaki spring rolls","empty", BigDecimal.valueOf(5),"");
         storeService.addStoreProduct(natsume,dumplings,"Chicken dumplings","empty", BigDecimal.valueOf(3),"");
         storeService.create(natsume);
 //pos apotrepeis apo to na gineei overwrite ena magazi me idio declaration ? warning ktlp
         Store zorbas = storeService.initiateStore("Zorbas",souvlatzidiko,"Kornarou 25 71103 Athens Attica");
-        natsume.setImage("image");
+        zorbas.setImage("https://zorbas-seaside-restaurant.com/wp-content/uploads/2022/01/chicken-souvlaki.png");
         storeService.addStoreProduct(zorbas,souvlakiKotopoulo,"Souvlaki kotopoulo","Me laxano patates ntomata kremmudi", BigDecimal.valueOf(3.5),"");
         storeService.create(zorbas);
 
         Store coffeeIsland = storeService.initiateStore("Coffee Island",coffeeShop,"Makariou 5 74303 Athens Attica");
-        natsume.setImage("image");
+        coffeeIsland.setImage("https://th.bing.com/th/id/R.c805f8ce5b777b281de7a904e0f7d44b?rik=K11nPjbql2ACLA&pid=ImgRaw&r=0");
         storeService.addStoreProduct(coffeeIsland,greekCoffee,"Greek coffee","emoty", BigDecimal.valueOf(2),"");
         storeService.create(coffeeIsland);
 
         Store xelona = storeService.initiateStore("Xelona",mezedopoleio,"Kornarou 2 70303 Athens Attica");
-        natsume.setImage("image");
+        xelona.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/296156254_2008631672657602_1411545847266347075_n.png?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=DjHJNnjtn4QAX_EObp2&_nc_ht=scontent.fath4-2.fna&oh=00_AT8x3T_vXCDvF3XMsSdhKC-RRBqphnHqHmfKXkFiD8xHKw&oe=63290E54");
         storeService.addStoreProduct(xelona,zucchini,"Fried Zucchini","empty", BigDecimal.valueOf(3.5),"");
         storeService.create(xelona);
 
-        Store kagiampis = storeService.initiateStore("Kagiampis",mezedopoleio,"Katexaki 50 74303 Athens Attica");
-        natsume.setImage("image");
+        Store kagiampis = storeService.initiateStore("O Kafenes tou Kagiampi",mezedopoleio,"Katexaki 50 74303 Athens Attica");
+        kagiampis.setImage("https://www.gastronomos.gr/wp-content/uploads/2022/09/Sisli-14-Gastronomos-1536x864.jpg");
         storeService.addStoreProduct(kagiampis,tzatziki,"Tzatziki","empty", BigDecimal.valueOf(3.1),"");
         storeService.create(kagiampis);
 
         Store pratos = storeService.initiateStore("Pratos",iceCreamShop,"Katexaki 23 74303 Athens Attica");
-        natsume.setImage("image");
+        pratos.setImage("https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/2C2D5856-92AE-4D1F-BACB-50751CB621DF/Derivates/B32DA530-AC76-49A9-A414-531518309591.jpg");
         storeService.addStoreProduct(pratos,vanilliaFlavor,"Vanillia ice cream","empty", BigDecimal.valueOf(3.1),"");
         storeService.create(pratos);
 
