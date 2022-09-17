@@ -32,7 +32,7 @@ import java.util.Set;
         query ="""
 			SELECT STOREPRODUCT_ID as storeProductId, COUNT(STOREPRODUCT_ID) as frequency
             FROM ORDER_ITEMS
-            INNER JOIN STOREPRODUCT ON STOREPRODUCT.ID=ORDER_ITEMS.STOREPRODUCT_ID
+            INNER JOIN STORE_PRODUCTS ON STORE_PRODUCTS.ID=ORDER_ITEMS.STOREPRODUCT_ID
             GROUP BY STOREPRODUCT_ID
             ORDER BY COUNT(STOREPRODUCT_ID) DESC
             FETCH NEXT 10 ROWS ONLY
@@ -54,7 +54,7 @@ import java.util.Set;
             FROM (
             SELECT order_id, store_id
             FROM ORDER_ITEMS
-            INNER JOIN STOREPRODUCT ON storeproduct.id=order_items.storeproduct_id
+            INNER JOIN STORE_PRODUCTS ON STORE_PRODUCTS.id=order_items.STOREPRODUCT_id
             Group by order_id, store_id
                    )
             GROUP BY store_id
@@ -79,9 +79,9 @@ import java.util.Set;
                        SELECT order_id, store_id
                        FROM ORDER_ITEMS
                        INNER JOIN (
-                                    SELECT store_id, storeproduct.id as spid
-                                    FROM STOREPRODUCT
-                                    INNER JOIN STORES ON stores.id=storeproduct.store_id
+                                    SELECT store_id, STORE_PRODUCTS.id as spid
+                                    FROM STORE_PRODUCTS
+                                    INNER JOIN STORES ON stores.id=STORE_PRODUCTS.store_id
                                     WHERE storecategory_id=?
                                    )
                        ON spid=order_items.storeproduct_id 
@@ -123,7 +123,7 @@ public class Store extends BaseModel {
     @Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Address must be alphanumeric.")
     private String address;
 
-    @Column
+    @Column(length = 500)
     private String image;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

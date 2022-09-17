@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "STOREPRODUCT")
-@SequenceGenerator(name = "idGenerator", sequenceName = "STOREPRODUCT_SEQ", initialValue = 1, allocationSize = 1)
+@Table(name = "STORE_PRODUCTS")
+@SequenceGenerator(name = "idGenerator", sequenceName = "STORE_PRODUCTS_SEQ", initialValue = 1, allocationSize = 1)
 public class StoreProduct extends BaseModel {
 
     @Column(length = 50, nullable = false)
@@ -47,5 +47,5 @@ public class StoreProduct extends BaseModel {
 
     @NotNull(message = "Product is required.")
     @ManyToOne
-    private Product product;
+    private ProductCategory productCategory;
 }
