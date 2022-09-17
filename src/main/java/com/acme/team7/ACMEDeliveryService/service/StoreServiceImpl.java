@@ -34,25 +34,9 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public void addStoreProduct(Store store, Product product, String name, String details, BigDecimal price, String image) {
+    public void addStoreProduct(Store store, ProductCategory product, String name, String details, BigDecimal price, String image) {
         store.getStoreProducts().add(storeProductCreation(store,product, name, details, price, image));
         log.info("Store products added to the store.");
-    } //elegxontai ta patterns meso tou build etsi?? opote edo den xreiazetai na checkaro kati etsi?
-
-
-    //kamia kali idea gia na min exo diaforetika function gia to kathe update?? add ki alla px name,details,ktlp
-    @Override
-    public void updateStoreProductPrice(Store store, StoreProduct storeProduct, BigDecimal price) { //add check nullability??
-        store.getStoreProducts().removeIf(sp -> sp.getId().equals(storeProduct.getId()));
-        store.getStoreProducts().add(storeProductCreation(store,storeProduct.getProduct(),storeProduct.getName(),storeProduct.getDetails(),price,storeProduct.getImage()));
-        update(store);
-    }
-
-    @Override
-    public void removeStoreProduct(Store store, StoreProduct storeProduct) {
-        store.getStoreProducts().removeIf(sp -> sp.getId().equals(storeProduct.getId()));
-        log.info("Unable to delete store product not existing in the store.");
-        update(store); //sosto?????????
     }
 
     @Override
@@ -72,8 +56,8 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return null;
     }
 
-    private StoreProduct storeProductCreation(Store store, Product product, String name, String details, BigDecimal price, String image) {
-        return StoreProduct.builder().store(store).product(product).name(name).details(details).price(price).image(image).build();
+    private StoreProduct storeProductCreation(Store store, ProductCategory productCategory, String name, String details, BigDecimal price, String image) {
+        return StoreProduct.builder().store(store).productCategory(productCategory).name(name).details(details).price(price).image(image).build();
     }
 
     @Override

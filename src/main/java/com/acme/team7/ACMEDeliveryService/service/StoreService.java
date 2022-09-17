@@ -1,6 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.service;
 
-import com.acme.team7.ACMEDeliveryService.domain.Product;
+import com.acme.team7.ACMEDeliveryService.domain.ProductCategory;
 import com.acme.team7.ACMEDeliveryService.domain.Store;
 import com.acme.team7.ACMEDeliveryService.domain.StoreCategory;
 import com.acme.team7.ACMEDeliveryService.domain.StoreProduct;
@@ -15,13 +15,9 @@ public interface StoreService extends BaseService<Store>{
 
     Store initiateStore(String name, StoreCategory storeCategory, String address);
 
-    void addStoreProduct(Store store, Product product, String name, String details, BigDecimal price, String image);
-
-    void updateStoreProductPrice(Store store, StoreProduct storeProduct, BigDecimal price);
+    void addStoreProduct(Store store, ProductCategory product, String name, String details, BigDecimal price, String image);
 
     StoreProduct getStoreProduct(Store store, Long id);
-
-    void removeStoreProduct(Store store, StoreProduct storeProduct);
 
     List<KeyValue<String, Long>> reportTop10StoreProducts();
 
