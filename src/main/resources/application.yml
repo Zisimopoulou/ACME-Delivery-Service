@@ -43,15 +43,13 @@ spring:
                 order_updates: true
                 query:
                     in_clause_parameter_padding: true
-                generate_statistics: false # NOT a production setting
+                generate_statistics: false
                 session:
                     events:
                         log:
-                            LOG_QUERIES_SLOWER_THAN_MS: 10 # NOT a production setting
+                            LOG_QUERIES_SLOWER_THAN_MS: 10
         show-sql: false
     sql:
         init:
-            # Mode to apply when determining if DataSource initialization should be performed using the available DDL (schema
-            # .sql) and DML (data.sql) scripts.
             mode: never
             platform: oracle
