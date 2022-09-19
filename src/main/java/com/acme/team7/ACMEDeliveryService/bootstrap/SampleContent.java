@@ -75,7 +75,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         Store louloudaki = storeService.initiateStore("Louloudaki",mezedopoleio,"Plateia Eleftheris 51 71303 Athens Attica");
         louloudaki.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/304138197_490310123099500_3228594208283622768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=Wj9MigUQ7xUAX8ssch0&_nc_oc=AQmQoUhCmVKCDMxj3ZuPQ5pPkGhjGnqjlQdUsc_eO2OvuxrZ2BYb1yTe6LPuzujBfE0&_nc_ht=scontent.fath4-2.fna&oh=00_AT_IyYwBo2kdevjh7lZ_M4SNoh8UT33T628kHfuVmT-1uA&oe=632A12C2");
         storeService.addStoreProduct(louloudaki,salad,"Louloudaki Salad","With vinegar sauce and manouri cheese", BigDecimal.valueOf(4.5),"");
-        storeService.addStoreProduct(louloudaki,appetizers,"Fried Liver","empty", BigDecimal.valueOf(5),"");
+        storeService.addStoreProduct(louloudaki,appetizers,"Fried Liver","empty", BigDecimal.valueOf(5),"https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/shutterstock_1272921334.jpg");
         storeService.addStoreProduct(louloudaki,appetizers,"Fried Zucchini","empty", BigDecimal.valueOf(3),"");
         storeService.addStoreProduct(louloudaki,alcohol,"Red wine","250 ml", BigDecimal.valueOf(2),"");
         storeService.create(louloudaki);

@@ -17,16 +17,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ORDERS", indexes = {@Index(name = "ORDERS_IDX_01", columnList = "orderNumber")})
+@Table(name = "ORDERS")
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel{
 
-    @NotNull(message = "Serial is required.")
-    @Column(length = 30, nullable = false, unique = true)
-    @NotEmpty
-    private String orderNumber;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull(message = "Account is required.")
     private Account account;
 
@@ -37,7 +32,7 @@ public class Order extends BaseModel{
     private Date submissionDate;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @NotNull(message = "Order items are required.")
     private Set<@NotNull OrderItem> orderItems;
 
