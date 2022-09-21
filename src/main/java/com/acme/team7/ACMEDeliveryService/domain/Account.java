@@ -20,6 +20,9 @@ public class Account extends BaseModel{
     @Pattern(regexp = "^[a-zA-Z]+$", message = "First name must be alphabetic")
     private String firstName;
 
+    @Column(length = 500)
+    private String profilePicture;
+
     @NotNull(message = "Last name is required")
     @Column(length = 30, nullable = false)
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Last name must be alphabetic")
