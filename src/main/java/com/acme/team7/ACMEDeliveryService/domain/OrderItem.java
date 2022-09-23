@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 @Getter
@@ -31,12 +31,11 @@ public class OrderItem extends BaseModel{
 
     @Min(value = 1, message = "At least one product is required.")
     @Column(nullable = false)
-//    @Pattern(regexp = "[0-9]+",message = "Quantity must be an integer.")
     @NotNull(message = "Quantity of the product is required.")
     private Integer quantity;
 
-    @Column(precision = 10, scale = 2, nullable = false)
+    @Column(precision = 6, scale = 2, nullable = false)
     @NotNull(message = "Price is required.")
-//    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Price must be numeric with at most two decimal places.")
-    private BigDecimal price;
+    @Digits(integer = 4, fraction = 2)
+    private BigDecimal orderPrice;
 }
