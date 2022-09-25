@@ -5,12 +5,15 @@ import com.acme.team7.ACMEDeliveryService.domain.Order;
 import com.acme.team7.ACMEDeliveryService.service.BaseService;
 import com.acme.team7.ACMEDeliveryService.service.OrderService;
 import com.acme.team7.ACMEDeliveryService.transfer.ApiResponse;
+import com.acme.team7.ACMEDeliveryService.transfer.KeySixValues;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -26,7 +29,6 @@ public class OrderControllerImpl extends BaseControllerImpl<Order> {
         return orderService;
     }
 
-    //Afto linei to provlima??
     @Override
     @PostMapping
     public ResponseEntity<ApiResponse<Order>> create(@Valid @RequestBody final Order entity) {
@@ -34,12 +36,13 @@ public class OrderControllerImpl extends BaseControllerImpl<Order> {
                 HttpStatus.CREATED);
     }
 
-    public ResponseEntity<ApiResponse<List<Order>>> findOrdersByAccount(@RequestParam Account account) {
-        final List<Order> orders = orderService.findOrdersByAccount(account);
+    @GetMapping(value = "accountOrders/{id}")
+    public ResponseEntity<ApiResponse<List<KeySixValues<String, Date,String, BigDecimal,Integer,BigDecimal,String>>>> findOrdersByAccount(@PathVariable("id") final Long id) {
+        final List<KeySixValues<String, Date,String, BigDecimal,Integer,BigDecimal,String>> orders = orderService.getAccountOrders(id);
         if (orders == null) {
             throw new NoSuchElementException("No orders found");
         }
-        return ResponseEntity.ok(ApiResponse.<List<Order>>builder().data(orders).build());
+        return ResponseEntity.ok(ApiResponse.<List<KeySixValues<String, Date,String, BigDecimal,Integer,BigDecimal,String>>>builder().data(orders).build());
     }
 }
 

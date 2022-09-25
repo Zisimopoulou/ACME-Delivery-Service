@@ -2,6 +2,8 @@ package com.acme.team7.ACMEDeliveryService.service;
 
 import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.OrderRepository;
+import com.acme.team7.ACMEDeliveryService.transfer.KeySixValues;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -100,7 +102,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         order.setSubmissionDate(new Date());
         return create(order);
     }
-//add set credit card if needed
+
     @Override
     public Order proceedToCheckout(Order order, PaymentMethod paymentMethod) {
         if (isNullOrderPayment(order,paymentMethod)) {
@@ -111,23 +113,18 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     }
 
     @Override
-    public Order getLazyOrders(Long id) {
-        Optional<Order> order = orderRepository.getLazyOrders(id);
-        if (order.isPresent()) {
-            return order.get();
+    public List<KeySixValues<String,Date,String,BigDecimal,Integer,BigDecimal,String>> getAccountOrders(Long id) {
+        List<KeySixValues<String,Date,String,BigDecimal,Integer,BigDecimal,String>> orders = orderRepository.getAccountOrders(id);
+        if (!orders.isEmpty()) {
+            return orders;
         }
-        throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
-    }
-
-    @Override
-    public List<Order> findOrdersByAccount(Account account) {
-        return  orderRepository.findOrdersByAccount(account);
+        throw new NoSuchElementException(String.format("No orders found."));
     }
 
     private BigDecimal computeTotalCost(Order order) {
         BigDecimal cost = new BigDecimal(0);
         for (OrderItem orderItem : order.getOrderItems()) {
-            cost = cost.add(orderItem.getPrice());
+            cost = cost.add(orderItem.getOrderPrice());
         }
         return cost;
     }
@@ -178,6 +175,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     }
 
     private OrderItem orderItemCreation(Order order, StoreProduct storeProduct, int quantity) {
-        return OrderItem.builder().storeProduct(storeProduct).order(order).quantity(quantity).price(storeProduct.getPrice()).build();
+        return OrderItem.builder().storeProduct(storeProduct).order(order).quantity(quantity).orderPrice(storeProduct.getPrice()).build();
     }
 }

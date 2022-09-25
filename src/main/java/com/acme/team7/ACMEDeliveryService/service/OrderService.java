@@ -1,7 +1,10 @@
 package com.acme.team7.ACMEDeliveryService.service;
 
 import com.acme.team7.ACMEDeliveryService.domain.*;
+import com.acme.team7.ACMEDeliveryService.transfer.KeySixValues;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public interface OrderService extends BaseService<Order> {
@@ -18,7 +21,6 @@ public interface OrderService extends BaseService<Order> {
 
     Order proceedToCheckout(Order order, PaymentMethod paymentMethod);
 
-    Order getLazyOrders(Long id);
+    List<KeySixValues<String,Date,String,BigDecimal,Integer,BigDecimal,String>> getAccountOrders(Long id);
 
-    List<Order> findOrdersByAccount(Account account);
 }

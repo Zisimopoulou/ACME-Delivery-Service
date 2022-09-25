@@ -24,7 +24,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<Store> findStoresByNameOrStoreCategory_Description(String name, String description) {
+    public List<Store> findStoresByNameOrStoreCategory_Description(final String name, final String description) {
         return storeRepository.findStoresByNameOrStoreCategory_Description(name,description);
     }
 
@@ -70,7 +70,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<KeyValue<String, Long>> reportTopStoresPerCategory(Long id) {
+    public List<KeyValue<String, Long>> reportTopStoresPerCategory(final Long id) {
         return storeRepository.reportTopStoresPerCategory(id);
     }
 
