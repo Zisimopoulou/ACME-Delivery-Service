@@ -3,15 +3,24 @@ package com.acme.team7.ACMEDeliveryService.controller;
 import com.acme.team7.ACMEDeliveryService.base.BaseComponent;
 import com.acme.team7.ACMEDeliveryService.domain.BaseModel;
 import com.acme.team7.ACMEDeliveryService.service.BaseService;
+import com.acme.team7.ACMEDeliveryService.transfer.ApiError;
 import com.acme.team7.ACMEDeliveryService.transfer.ApiResponse;
+import org.slf4j.Logger;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.logging.ErrorManager;
+
 @CrossOrigin
 public abstract class BaseControllerImpl<T extends BaseModel> extends BaseComponent {
+    public Logger logger;
+
     protected abstract BaseService<T> getBaseService();
 
     @GetMapping("/{id}")
@@ -52,5 +61,13 @@ public abstract class BaseControllerImpl<T extends BaseModel> extends BaseCompon
         if (getBaseService().exists(entity)) {
             getBaseService().delete(entity);
         }
+    }
+
+    @ExceptionHandler({NoSuchElementException.class, IllegalArgumentException.class, EmptyResultDataAccessException.class})
+    public ResponseEntity<ApiResponse<Void>> notFoundException(NoSuchElementException ex, WebRequest webRequest) {
+        logger.error("NoSuchElementException Exception caught");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                ApiResponse.<Void>builder().apiError(ApiError.builder().description(ex.getMessage()).httpStatus(
+                        HttpStatus.NOT_FOUND.value()).path(webRequest.getDescription(false)).build()).build());
     }
 }
