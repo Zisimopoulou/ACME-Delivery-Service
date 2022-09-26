@@ -14,8 +14,6 @@ import java.util.List;
 public interface StoreRepository extends JpaRepository<Store, Long> {
     List<Store> findStoresByNameOrStoreCategory_Description(String name, String description);
 
-    Store findStoreById(Long id);
-
     @Query(name = "Store.ReportTop10StoreProducts",nativeQuery = true)
     List<KeyValue<String, Long>> reportTop10StoreProducts();
 

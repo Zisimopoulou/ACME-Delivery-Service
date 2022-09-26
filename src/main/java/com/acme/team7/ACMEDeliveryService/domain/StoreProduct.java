@@ -4,6 +4,7 @@ import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,9 +33,10 @@ public class StoreProduct extends BaseModel {
     private String details;
 
     @EqualsAndHashCode.Exclude
-    @Column(precision = 10, scale = 2,nullable = false)
     @NotNull(message = "Price is required.")
-//    @Pattern(regexp = "^0\\.(?!0+$)\\d{1,2}$", message = "Price must be numeric with at most two decimal places.")
+    @Column(precision = 6, scale = 2, nullable = false)
+    @NotNull(message = "Price is required.")
+    @Digits(integer = 4, fraction = 2)
     private BigDecimal price;
 
     @EqualsAndHashCode.Exclude

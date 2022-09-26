@@ -1,20 +1,22 @@
 package com.acme.team7.ACMEDeliveryService.base;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Slf4j
 public abstract class BaseComponent {
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
     @PostConstruct
     public void init() {
-        log.trace("Loaded {}.", getClass());
+        logger.trace("Loaded {}.", getClass());
     }
 
     @PreDestroy
     public void destroy() {
-        log.trace("{} is about to be destroyed.", getClass().getName());
+        logger.trace("{} is about to be destroyed.", getClass().getName());
     }
 
 }

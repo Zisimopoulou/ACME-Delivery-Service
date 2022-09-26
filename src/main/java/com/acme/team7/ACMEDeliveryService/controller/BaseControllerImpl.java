@@ -15,7 +15,6 @@ import org.springframework.web.context.request.WebRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.logging.ErrorManager;
 
 @CrossOrigin
 public abstract class BaseControllerImpl<T extends BaseModel> extends BaseComponent {

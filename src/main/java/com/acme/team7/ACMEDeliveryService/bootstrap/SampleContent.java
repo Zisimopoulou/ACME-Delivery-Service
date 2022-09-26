@@ -4,14 +4,11 @@ import com.acme.team7.ACMEDeliveryService.base.BaseComponent;
 import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.service.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.List;
 
-@Slf4j
 @Component
 @RequiredArgsConstructor
 public class SampleContent extends BaseComponent implements CommandLineRunner {
@@ -37,12 +34,12 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
                 Account.builder().firstName("Nikolas").lastName("Tassides")
                         .address("Rovertou Galli 4 11742 Athina Attica").email("lev12@typestring.com")
                         .password("44&4C&b7Z23").phoneNumber("6948361237").age(19).build());
-        log.info("Accounts created: {}.", accountService.createAll(accountList));
+        logger.info("Accounts created: {}.", accountService.createAll(accountList));
 
-        accountService.findAll().forEach(c -> log.info("{}", c));
+        accountService.findAll().forEach(c -> logger.info("{}", c));
 
-        log.info("Does customer email exist? {}.", (accountService.findByEmail("neeneemusic@schule-breklum.de") != null));
-        log.info("Does customer email exist? {}.", (accountService.findByEmail("mommykmr@hotmail.red") != null));
+        logger.info("Does customer email exist? {}.", (accountService.findByEmail("neeneemusic@schule-breklum.de") != null));
+        logger.info("Does customer email exist? {}.", (accountService.findByEmail("mommykmr@hotmail.red") != null));
 
         ProductCategory salad = productCategoryService.create(ProductCategory.builder().description("Salad").build());
         ProductCategory noodles = productCategoryService.create(ProductCategory.builder().description("Noodles").build());
@@ -70,7 +67,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         StoreCategory asian = storeCategoryService.create(StoreCategory.builder().description("Asian restaurant").build());
         StoreCategory mezedopoleio = storeCategoryService.create(StoreCategory.builder().description("Mezedopoleio").build());
 
-        storeCategoryService.findAll().forEach(sc -> log.info("Store category {} created.", sc));
+        storeCategoryService.findAll().forEach(sc -> logger.info("Store category {} created.", sc));
 
         Store louloudaki = storeService.initiateStore("Louloudaki",mezedopoleio,"Plateia Eleftheris 51 71303 Athens Attica");
         louloudaki.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/304138197_490310123099500_3228594208283622768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=Wj9MigUQ7xUAX8ssch0&_nc_oc=AQmQoUhCmVKCDMxj3ZuPQ5pPkGhjGnqjlQdUsc_eO2OvuxrZ2BYb1yTe6LPuzujBfE0&_nc_ht=scontent.fath4-2.fna&oh=00_AT_IyYwBo2kdevjh7lZ_M4SNoh8UT33T628kHfuVmT-1uA&oe=632A12C2");
@@ -187,11 +184,11 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.proceedToCheckout(elevenOrder,PaymentMethod.CASH);
         orderService.checkout(elevenOrder);
 
-        log.info("-----Top 10 store products-----");
-        storeService.reportTop10StoreProducts().forEach(tp -> log.info("Store product with id {}, appears with frequency {}.", tp.getKey(),tp.getValue()));
-        log.info("-----Most famous stores based on orders-----");
-        storeService.reportTopStores().forEach(tp -> log.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
-        log.info("-----Most famous stores per category based on orders-----");
-        storeService.reportTopStoresPerCategory(5L).forEach( tp->log.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
+        logger.info("-----Top 10 store products-----");
+        storeService.reportTop10StoreProducts().forEach(tp -> logger.info("Store product with id {}, appears with frequency {}.", tp.getKey(),tp.getValue()));
+        logger.info("-----Most famous stores based on orders-----");
+        storeService.reportTopStores().forEach(tp -> logger.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
+        logger.info("-----Most famous stores per category based on orders-----");
+        storeService.reportTopStoresPerCategory(5L).forEach( tp->logger.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
       }
 }

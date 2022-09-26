@@ -17,7 +17,6 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {
     private final OrderRepository orderRepository;
 
@@ -36,7 +35,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             return;
         }
         if (order.getOrderItems().isEmpty()) {
-            log.info("Adding first storeProduct to order.");
+            logger.info("Adding first storeProduct to order.");
             order.getOrderItems().add(orderItemCreation(order,storeProduct,quantity));
             return;
         }
@@ -44,19 +43,19 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             for (OrderItem orderItem : order.getOrderItems()) {
                 if (orderItem.getStoreProduct().getId().equals(storeProduct.getId())) {
                     orderItem.setQuantity(orderItem.getQuantity() + quantity);
-                    log.debug("Quantity of the storeProduct {}, changed.",storeProduct);
+                    logger.debug("Quantity of the storeProduct {}, changed.",storeProduct);
                     return;
                 }
             }
             order.getOrderItems().add(orderItemCreation(order, storeProduct, quantity));
-            log.debug("StoreProduct {}, added to basket.",storeProduct);
+            logger.debug("StoreProduct {}, added to basket.",storeProduct);
         }
         if (!isSameStore(order,storeProduct)) {
-            log.warn("New store selection.");
+            logger.warn("New store selection.");
             order.getOrderItems().removeAll(order.getOrderItems());
-            log.debug("StoreProducts removed from order {}.",order);
+            logger.debug("StoreProducts removed from order {}.",order);
 
-            log.debug("Adding new item on the order."); //AOP!!!!!!
+            logger.debug("Adding new item on the order."); //AOP!!!!!!
             order.getOrderItems().add(orderItemCreation(order,storeProduct,quantity));
         }
     }
@@ -67,14 +66,14 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             return;
         }
         if (orderItemExistence(order, storeProduct) == null) {
-            log.debug("Unable to update storeProduct not existing in the order.");
+            logger.debug("Unable to update storeProduct not existing in the order.");
             return;
         }
         if (orderItemExistence(order, storeProduct) != null) {
             OrderItem orderItem = orderItemExistence(order,storeProduct);
             order.getOrderItems().remove(orderItem);
             order.getOrderItems().add(orderItemCreation(order, storeProduct, quantity));
-            log.info("StoreProduct [{}] updated in order [{}]",storeProduct,order);
+            logger.info("StoreProduct [{}] updated in order [{}]",storeProduct,order);
         }
     }
 
@@ -84,12 +83,12 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
             return;
         }
         if (orderItemExistence(order, storeProduct) == null) {
-            log.debug("Unable to remove storeProduct not existing in the order.");
+            logger.debug("Unable to remove storeProduct not existing in the order.");
             return;
         }
         if (orderItemExistence(order, storeProduct) != null) {
             order.getOrderItems().remove(orderItemExistence(order, storeProduct));
-            log.warn("StoreProduct {} removed from the order {}.",storeProduct,order);
+            logger.warn("StoreProduct {} removed from the order {}.",storeProduct,order);
         }
     }
     @Override
@@ -133,21 +132,21 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         if (order.getOrderItems().iterator().next().getStoreProduct().getStore().getId().equals(storeProduct.getStore().getId())) {
             return true;
         }
-        log.error("Unable to add item from a different store.");
+        logger.error("Unable to add item from a different store.");
         return false;
     }
 
     private boolean isNullOrderPayment(Order order, PaymentMethod paymentMethod) {
         if (order == null) {
-            log.error("Invalid null order.");
+            logger.error("Invalid null order.");
             return true;
         }
         if (order.getOrderItems().isEmpty()){
-            log.error("Basket is empty.");
+            logger.error("Basket is empty.");
             return true;
         }
         if (paymentMethod == null) {
-            log.error("Invalid null payment method.");
+            logger.error("Invalid null payment method.");
             return true;
         }
         return false;
@@ -155,11 +154,11 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
     private boolean isNullOrderStoreProduct(Order order, StoreProduct storeProduct) {
         if (order == null) {
-            log.warn("Invalid null order.");
+            logger.warn("Invalid null order.");
             return true;
         }
         if (storeProduct == null) {
-            log.warn("Invalid null storeProduct.");
+            logger.warn("Invalid null storeProduct.");
             return true;
         }
         return false;

@@ -14,7 +14,6 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreService{
     private final StoreRepository storeRepository;
 
@@ -36,12 +35,11 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     @Override
     public void addStoreProduct(Store store, ProductCategory product, String name, String details, BigDecimal price, String image) {
         store.getStoreProducts().add(storeProductCreation(store,product, name, details, price, image));
-        log.info("Store products added to the store.");
+        logger.info("Store products added to the store.");
     }
 
     @Override
     public StoreProduct getStoreProduct(Store store, Long id){
-        //iterate through a set
         Iterator<StoreProduct> storeProductIterator = store.getStoreProducts().iterator();
         List<StoreProduct> storeProducts = new ArrayList<>();
         while(storeProductIterator.hasNext()) {
@@ -52,7 +50,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
                 return storeProduct;
             }
         }
-        log.info("Unable to find store product with id {}.", id);
+        logger.info("Unable to find store product with id {}.", id);
         return null;
     }
 

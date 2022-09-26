@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService{
     private final AccountRepository accountRepository;
     @Override

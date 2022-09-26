@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class StoreCategoryServiceImpl extends BaseServiceImpl<StoreCategory> implements StoreCategoryService{
     private final StoreCategoryRepository storeCategoryRepository;
 
