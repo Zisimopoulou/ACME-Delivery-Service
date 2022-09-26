@@ -36,23 +36,21 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
         return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
     }
 
-
     @GetMapping("reportTop10StoreProducts")
     public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTop10StoreProducts() {
         return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTop10StoreProducts()).build());
     }
-
 
     @GetMapping("reportTopStores")
     public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTopStores() {
         return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTopStores()).build());
     }
 
+//    /stores/reportTopStoresPerCategory?id=1
     @GetMapping("reportTopStoresPerCategory")
     public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTopStoresPerCategory(@RequestParam Long id) {
         return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTopStoresPerCategory(id)).build());
     }
-
 
     @GetMapping("lazy")
     public ResponseEntity<ApiResponse<List<KeyTwoValues<String, String, String>>>> findLazyStores() {
