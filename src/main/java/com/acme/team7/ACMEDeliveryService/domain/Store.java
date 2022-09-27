@@ -30,20 +30,26 @@ import java.util.Set;
 
 @NamedNativeQuery(name = "Store.ReportTop10StoreProducts",
         query ="""
-			SELECT STOREPRODUCT_ID as storeProductId, COUNT(STOREPRODUCT_ID) as frequency
+			SELECT storeProductName, storeProductImage, storeName, COUNT(STOREPRODUCT_ID)
             FROM ORDER_ITEMS
-            INNER JOIN STORE_PRODUCTS ON STORE_PRODUCTS.ID=ORDER_ITEMS.STOREPRODUCT_ID
-            GROUP BY STOREPRODUCT_ID
+            INNER JOIN (
+               SELECT store_products.name as storeProductName, store_products.image as storeProductImage, stores.name as storeName,STORE_PRODUCTS.ID as spid
+               FROM STORES
+               INNER JOIN STORE_PRODUCTS ON store_products.store_id=stores.id
+                       )
+            ON spid=ORDER_ITEMS.STOREPRODUCT_ID
+            GROUP BY storeProductName,storeProductImage,storeName
             ORDER BY COUNT(STOREPRODUCT_ID) DESC
             FETCH NEXT 10 ROWS ONLY
 			""",
         resultSetMapping = "ReportTop10StoreProducts")
 @SqlResultSetMapping(name = "ReportTop10StoreProducts",
         classes = @ConstructorResult(
-                targetClass = KeyValue.class,
+                targetClass = KeyTwoValues.class,
                 columns = {
-                        @ColumnResult(name = "storeProductId", type = String.class),
-                        @ColumnResult(name = "frequency", type = Long.class)
+                        @ColumnResult(name = "storeProductName", type = String.class),
+                        @ColumnResult(name = "storeProductImage", type = String.class),
+                        @ColumnResult(name = "storeName", type = String.class)
                 }
         )
 )
@@ -135,5 +141,5 @@ public class Store extends BaseModel {
     @ToString.Exclude
     @NotNull(message = "Store products are required.")
     @OneToMany(mappedBy = "store",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<@NotNull StoreProduct> storeProducts;
+    private Set<StoreProduct> storeProducts;
 }

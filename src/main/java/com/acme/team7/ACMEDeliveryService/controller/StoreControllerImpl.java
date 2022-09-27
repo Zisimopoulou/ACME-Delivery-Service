@@ -37,8 +37,8 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
     }
 
     @GetMapping("reportTop10StoreProducts")
-    public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTop10StoreProducts() {
-        return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTop10StoreProducts()).build());
+    public ResponseEntity<ApiResponse<List<KeyTwoValues<String,String,String>>>> reportTop10StoreProducts() {
+        return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String,String,String>>>builder().data(storeService.reportTop10StoreProducts()).build());
     }
 
     @GetMapping("reportTopStores")
