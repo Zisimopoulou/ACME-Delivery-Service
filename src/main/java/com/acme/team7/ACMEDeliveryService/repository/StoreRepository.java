@@ -18,7 +18,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
     List<KeyValue<String, Long>> reportTop10StoreProducts();
 
     @Query(name = "Store.ReportTopStores",nativeQuery = true)
-    List<KeyValue<String, Long>> reportTopStores();
+    List<KeyTwoValues<String, String, String>> reportTopStores();
 
     @Query(name = "Store.ReportTopStoresPerCategory",nativeQuery = true)
     List<KeyValue<String, Long>> reportTopStoresPerCategory(Long id);

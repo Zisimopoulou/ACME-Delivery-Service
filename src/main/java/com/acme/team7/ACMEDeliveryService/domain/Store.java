@@ -50,24 +50,26 @@ import java.util.Set;
 
 @NamedNativeQuery(name = "Store.ReportTopStores",
         query ="""
-			SELECT store_id as storeId, COUNT(store_id) as frequency
-            FROM (
-            SELECT order_id, store_id
-            FROM ORDER_ITEMS
-            INNER JOIN STORE_PRODUCTS ON STORE_PRODUCTS.id=order_items.STOREPRODUCT_id
-            Group by order_id, store_id
-                   )
-            GROUP BY store_id
-            ORDER BY frequency DESC
-            FETCH NEXT 20 ROWS ONLY
+			SELECT stores.id as storeId, stores.name as storeName, stores.image as storeImage, COUNT(store_id)
+            FROM STORES
+            INNER JOIN  (
+               SELECT order_id, store_id
+               FROM ORDER_ITEMS
+               INNER JOIN STORE_PRODUCTS ON STORE_PRODUCTS.id=order_items.STOREPRODUCT_id
+               Group by order_id, store_id
+                      ) ON store_id=stores.id
+               GROUP BY stores.id,stores.name,stores.image
+               ORDER BY COUNT(store_id) DESC
+               FETCH NEXT 20 ROWS ONLY
 			""",
         resultSetMapping = "ReportTopStores")
 @SqlResultSetMapping(name = "ReportTopStores",
         classes = @ConstructorResult(
-                targetClass = KeyValue.class,
+                targetClass = KeyTwoValues.class,
                 columns = {
                         @ColumnResult(name = "storeId", type = String.class),
-                        @ColumnResult(name = "frequency", type = Long.class)
+                        @ColumnResult(name = "storeName", type = String.class),
+                        @ColumnResult(name = "storeImage", type = String.class)
                 }
         )
 )

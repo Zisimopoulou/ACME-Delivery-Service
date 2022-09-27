@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @RequiredArgsConstructor
@@ -184,10 +185,11 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         orderService.proceedToCheckout(elevenOrder,PaymentMethod.CASH);
         orderService.checkout(elevenOrder);
 
+        AtomicInteger counter = new AtomicInteger(1);
         logger.info("-----Top 10 store products-----");
         storeService.reportTop10StoreProducts().forEach(tp -> logger.info("Store product with id {}, appears with frequency {}.", tp.getKey(),tp.getValue()));
         logger.info("-----Most famous stores based on orders-----");
-        storeService.reportTopStores().forEach(tp -> logger.info("The store with name {}, appears {} times in different orders.", storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
+        storeService.reportTopStores().forEach(tp -> logger.info("Store with name {}, is {} on the list.", tp.getFirstValue(), counter.getAndIncrement()));
         logger.info("-----Most famous stores per category based on orders-----");
         storeService.reportTopStoresPerCategory(5L).forEach( tp->logger.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
       }
