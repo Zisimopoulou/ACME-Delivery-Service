@@ -1,7 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.controller;
 
-import com.acme.team7.ACMEDeliveryService.domain.Account;
 import com.acme.team7.ACMEDeliveryService.domain.Order;
+import com.acme.team7.ACMEDeliveryService.domain.OrderItem;
 import com.acme.team7.ACMEDeliveryService.service.BaseService;
 import com.acme.team7.ACMEDeliveryService.service.OrderService;
 import com.acme.team7.ACMEDeliveryService.transfer.ApiResponse;
@@ -32,6 +32,7 @@ public class OrderControllerImpl extends BaseControllerImpl<Order> {
     @Override
     @PostMapping
     public ResponseEntity<ApiResponse<Order>> create(@Valid @RequestBody final Order entity) {
+        entity.getOrderItems().forEach(oi -> oi.setOrder(entity));
         return new ResponseEntity<>(ApiResponse.<Order>builder().data(orderService.checkout(entity)).build(),
                 HttpStatus.CREATED);
     }

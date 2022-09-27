@@ -56,13 +56,12 @@ public class Order extends BaseModel{
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    @NotNull(message = "Submission date is required.")
     private Date submissionDate;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @NotNull(message = "Order items are required.")
-    private Set<@NotNull OrderItem> orderItems;
+    private Set<OrderItem> orderItems;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 12, nullable = false)
@@ -70,7 +69,6 @@ public class Order extends BaseModel{
     private PaymentMethod paymentMethod;
 
     @Column(precision = 8, scale = 2, nullable = false)
-    @NotNull(message = "Total cost is required.")
     @Digits(integer = 6, fraction = 2)
     private BigDecimal totalCost;
 }
