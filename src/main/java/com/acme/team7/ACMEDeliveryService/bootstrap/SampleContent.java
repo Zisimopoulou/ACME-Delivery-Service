@@ -61,12 +61,12 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         ProductCategory merides = productCategoryService.create(ProductCategory.builder().description("Merides").build());
         ProductCategory sauce = productCategoryService.create(ProductCategory.builder().description("Sauce").build());
 
-        StoreCategory tavern = storeCategoryService.create(StoreCategory.builder().description("Tavern").build());
-        StoreCategory coffeeShop = storeCategoryService.create(StoreCategory.builder().description("Coffee Shop").build());
-        StoreCategory iceCreamShop = storeCategoryService.create(StoreCategory.builder().description("Ice Cream Shop").build());
-        StoreCategory souvlatzidiko = storeCategoryService.create(StoreCategory.builder().description("Souvlatzidiko").build());
-        StoreCategory asian = storeCategoryService.create(StoreCategory.builder().description("Asian restaurant").build());
-        StoreCategory mezedopoleio = storeCategoryService.create(StoreCategory.builder().description("Mezedopoleio").build());
+        StoreCategory tavern = storeCategoryService.create(StoreCategory.builder().description("Tavern").image("https://blog.e-table.gr/wp-content/uploads/2016/10/11013427_760656340678160_6550820498649138632_n.png").build());
+        StoreCategory coffeeShop = storeCategoryService.create(StoreCategory.builder().description("Coffee Shop").image("https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/f5843852864027.591f18d2ba0f8.jpg").build());
+        StoreCategory iceCreamShop = storeCategoryService.create(StoreCategory.builder().description("Ice Cream Shop").image("https://www.ft.com/__origami/service/image/v2/images/raw/https://d1e00ek4ebabms.cloudfront.net/production/6a665280-eebe-49e9-b16c-d823131c87de.jpg?source=next&amp;fit=scale-down&amp;quality=highest&amp;width=1067").build());
+        StoreCategory souvlatzidiko = storeCategoryService.create(StoreCategory.builder().description("Souvlatzidiko").image("https://eyefindyou.gr/wp-content/uploads/2022/08/IMG_28Sep2020114740AM.jpg").build());
+        StoreCategory asian = storeCategoryService.create(StoreCategory.builder().description("Asian restaurant").image("https://www.visitstockholm.com/media/original_images/wang1.jpg").build());
+        StoreCategory mezedopoleio = storeCategoryService.create(StoreCategory.builder().description("Mezedopoleio").image("https://www.athensmagazine.gr/photos/w_800px/articles/202007/_paraskeyh_mezedopwleia.jpg").build());
 
         storeCategoryService.findAll().forEach(sc -> logger.info("Store category {} created.", sc));
 

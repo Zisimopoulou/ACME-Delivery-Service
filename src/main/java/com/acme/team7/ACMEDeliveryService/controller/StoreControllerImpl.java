@@ -25,7 +25,7 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
         return storeService;
     }
 
-    public ResponseEntity<ApiResponse<List<Store>>> findStoreByStoreCategory_Description(String name, String description) {
+    public ResponseEntity<ApiResponse<List<Store>>> findStoresByNameOrStoreCategory_Description(String name, String description) {
         final List<Store> stores = storeService.findStoresByNameOrStoreCategory_Description(name, description);
         if (description == null) {
             throw new NoSuchElementException("Unable to find a store with null description.");
@@ -43,9 +43,8 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
         return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String, String, String>>>builder().data(storeService.reportTopStores()).build());
     }
 
-//    /stores/reportTopStoresPerCategory?id=1
-    @GetMapping("reportTopStoresPerCategory")
-    public ResponseEntity<ApiResponse<List<KeyTwoValues<String,String,String>>>> reportTopStoresPerCategory(@RequestParam Long id) {
+    @GetMapping("reportTopStoresPerCategory/{id}")
+    public ResponseEntity<ApiResponse<List<KeyTwoValues<String,String,String>>>> reportTopStoresPerCategory(@PathVariable("id") final Long id) {
         return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String,String,String>>>builder().data(storeService.reportTopStoresPerCategory(id)).build());
     }
 
