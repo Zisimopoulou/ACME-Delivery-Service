@@ -187,11 +187,13 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         AtomicInteger firstCounter = new AtomicInteger(1);
         AtomicInteger secondCounter = new AtomicInteger(1);
+        AtomicInteger thirdCounter = new AtomicInteger(1);
         logger.info("-----Top 10 store products-----");
         storeService.reportTop10StoreProducts().forEach(tp -> logger.info("Store product with name {}, is {} on the list.", tp.getKey(),secondCounter.getAndIncrement()));
         logger.info("-----Most famous stores based on orders-----");
         storeService.reportTopStores().forEach(tp -> logger.info("Store with name {}, is {} on the list.", tp.getFirstValue(), firstCounter.getAndIncrement()));
         logger.info("-----Most famous stores per category based on orders-----");
-        storeService.reportTopStoresPerCategory(5L).forEach( tp->logger.info("The store with name {}, appears {} times in different orders.",storeService.get(Long.parseLong(tp.getKey())).getName(),tp.getValue()));
+        Long category = 5L;
+        storeService.reportTopStoresPerCategory(category).forEach( tp->logger.info("For store category {}, store with name {}, is {} on the list.",category,tp.getFirstValue(),thirdCounter.getAndIncrement()));
       }
 }

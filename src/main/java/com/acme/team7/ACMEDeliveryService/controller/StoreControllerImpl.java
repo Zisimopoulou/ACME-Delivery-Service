@@ -5,13 +5,10 @@ import com.acme.team7.ACMEDeliveryService.service.BaseService;
 import com.acme.team7.ACMEDeliveryService.service.StoreService;
 import com.acme.team7.ACMEDeliveryService.transfer.ApiResponse;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
-import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Key;
-import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -48,8 +45,8 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
 
 //    /stores/reportTopStoresPerCategory?id=1
     @GetMapping("reportTopStoresPerCategory")
-    public ResponseEntity<ApiResponse<List<KeyValue<String, Long>>>> reportTopStoresPerCategory(@RequestParam Long id) {
-        return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, Long>>>builder().data(storeService.reportTopStoresPerCategory(id)).build());
+    public ResponseEntity<ApiResponse<List<KeyTwoValues<String,String,String>>>> reportTopStoresPerCategory(@RequestParam Long id) {
+        return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String,String,String>>>builder().data(storeService.reportTopStoresPerCategory(id)).build());
     }
 
     @GetMapping("lazy")

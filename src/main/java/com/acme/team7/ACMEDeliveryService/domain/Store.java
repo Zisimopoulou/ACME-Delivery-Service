@@ -1,10 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
 import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
-import com.acme.team7.ACMEDeliveryService.transfer.KeyValue;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -82,30 +79,31 @@ import java.util.Set;
 
 @NamedNativeQuery(name = "Store.ReportTopStoresPerCategory",
         query ="""
-			SELECT store_id as storeId, COUNT(store_id) as frequency
-            FROM (
-                       SELECT order_id, store_id
-                       FROM ORDER_ITEMS
-                       INNER JOIN (
-                                    SELECT store_id, STORE_PRODUCTS.id as spid
-                                    FROM STORE_PRODUCTS
-                                    INNER JOIN STORES ON stores.id=STORE_PRODUCTS.store_id
-                                    WHERE storecategory_id=?
-                                   )
-                       ON spid=order_items.storeproduct_id 
-                       Group by order_id, store_id 
-                   )
-                       GROUP BY store_id
-                       ORDER BY frequency DESC
-                       FETCH NEXT 10 ROWS ONLY
+			    SELECT store_id as storeId, storeName,storeImage, COUNT(store_id) as frequency
+                FROM (
+                    SELECT order_id, store_id, storeName, storeImage
+                    FROM ORDER_ITEMS
+                    INNER JOIN (
+                                   SELECT store_id, stores.name as storeName, stores.image as storeImage, STORE_PRODUCTS.id as spid
+                                   FROM STORE_PRODUCTS
+                                   INNER JOIN STORES ON stores.id=STORE_PRODUCTS.store_id
+                                   WHERE storecategory_id=?
+                               )
+                    ON spid=order_items.storeproduct_id\s
+                    Group by order_id, store_id, storeName, storeImage
+                      )
+                GROUP BY store_id, storeName, storeImage
+                ORDER BY frequency DESC
+                FETCH NEXT 10 ROWS ONLY
 			""",
         resultSetMapping = "ReportTopStoresPerCategory")
 @SqlResultSetMapping(name = "ReportTopStoresPerCategory",
         classes = @ConstructorResult(
-                targetClass = KeyValue.class,
+                targetClass = KeyTwoValues.class,
                 columns = {
                         @ColumnResult(name = "storeId", type = String.class),
-                        @ColumnResult(name = "frequency", type = Long.class)
+                        @ColumnResult(name = "storeName", type = String.class),
+                        @ColumnResult(name = "storeImage", type = String.class)
                 }
         )
 )
