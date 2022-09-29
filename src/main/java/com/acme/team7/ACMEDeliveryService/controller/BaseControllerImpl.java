@@ -61,12 +61,4 @@ public abstract class BaseControllerImpl<T extends BaseModel> extends BaseCompon
             getBaseService().delete(entity);
         }
     }
-
-    @ExceptionHandler({NoSuchElementException.class, IllegalArgumentException.class, EmptyResultDataAccessException.class})
-    public ResponseEntity<ApiResponse<Void>> notFoundException(NoSuchElementException ex, WebRequest webRequest) {
-        logger.error("NoSuchElementException Exception caught");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                ApiResponse.<Void>builder().apiError(ApiError.builder().description(ex.getMessage()).httpStatus(
-                        HttpStatus.NOT_FOUND.value()).path(webRequest.getDescription(false)).build()).build());
-    }
 }
