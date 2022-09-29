@@ -12,14 +12,14 @@ import java.util.Set;
 
 @NamedNativeQuery(name = "Order.GetAccountOrders",
         query ="""
-		   SELECT submissionDate as sub_date, orders.account_id as account_id, paymentMethod as payment_method, totalCost as total_cost, quantity as quantity, orderPrice as price, name as product_name
+		   SELECT orders.id as ordersId, submissionDate as sub_date, orders.account_id as account_id, paymentMethod as payment_method, totalCost as total_cost, quantity as quantity, orderPrice as price, name as product_name
            FROM orders
            INNER JOIN (
            SELECT order_items.order_id, store_products.name, order_items.orderPrice, order_items.quantity
            FROM order_items
            INNER JOIN store_products ON store_products.id=order_items.storeproduct_id
            )
-           ON order_id=orders.id
+           ON order_id=orders.id 
            WHERE orders.account_id=?
 			""",
         resultSetMapping = "GetAccountOrders")
@@ -27,7 +27,7 @@ import java.util.Set;
         classes = @ConstructorResult(
                 targetClass = KeySixValues.class,
                 columns = {
-                        @ColumnResult(name = "account_id", type = String.class),
+                        @ColumnResult(name = "ordersId", type = String.class),
                         @ColumnResult(name = "sub_date", type = Date.class),
                         @ColumnResult(name = "payment_method", type = String.class),
                         @ColumnResult(name = "total_cost", type = BigDecimal.class),
