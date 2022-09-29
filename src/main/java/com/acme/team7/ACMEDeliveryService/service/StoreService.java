@@ -10,7 +10,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface StoreService extends BaseService<Store>{
-    List<Store> findStoresByNameOrStoreCategory_Description(String name, String description);
+    List<Store> findStoresByName(String name);
+
+    List<Store> findStoresByStoreCategory_Description(String description);
+
+    List<Store> findStoresByNameOrStoreCategory_Description(String nameOrCategory);
 
     Store initiateStore(String name, StoreCategory storeCategory, String address);
 

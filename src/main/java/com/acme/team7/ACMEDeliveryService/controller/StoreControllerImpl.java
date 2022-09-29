@@ -25,14 +25,14 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
         return storeService;
     }
 
-    public ResponseEntity<ApiResponse<List<Store>>> findStoresByNameOrStoreCategory_Description(String name, String description) {
-        final List<Store> stores = storeService.findStoresByNameOrStoreCategory_Description(name, description);
-        if (description == null) {
+    @GetMapping(value = "name-category/{nameOrCategory}")
+    public ResponseEntity<ApiResponse<List<Store>>> findStoresByNameOrStoreCategory_Description(@PathVariable("nameOrCategory") String nameOrCategory) {
+        final List<Store> stores = storeService.findStoresByNameOrStoreCategory_Description(nameOrCategory);
+        if (nameOrCategory == null) {
             throw new NoSuchElementException("Unable to find a store with null description.");
         }
         return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(stores).build());
     }
-
     @GetMapping("reportTop10StoreProducts")
     public ResponseEntity<ApiResponse<List<KeyTwoValues<String,String,String>>>> reportTop10StoreProducts() {
         return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String,String,String>>>builder().data(storeService.reportTop10StoreProducts()).build());

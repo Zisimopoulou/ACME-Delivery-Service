@@ -21,8 +21,24 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<Store> findStoresByNameOrStoreCategory_Description(final String name, final String description) {
-        return storeRepository.findStoresByNameOrStoreCategory_Description(name,description);
+    public List<Store> findStoresByName(final String name) {
+        return storeRepository.findStoresByName(name);
+    }
+
+    @Override
+    public List<Store> findStoresByStoreCategory_Description(String description) {
+        return storeRepository.findStoresByStoreCategory_Description(description);
+    }
+
+    @Override
+    public List<Store> findStoresByNameOrStoreCategory_Description(String nameOrCategory) {
+        List<Store> storesByName = findStoresByName(nameOrCategory);
+        List<Store> storesByDescription = findStoresByStoreCategory_Description(nameOrCategory);
+        if (!storesByName.isEmpty()) {
+            return storesByName;
+        } else {
+            return storesByDescription;
+        }
     }
 
     @Override
