@@ -34,7 +34,6 @@ import java.util.Set;
                         @ColumnResult(name = "quantity", type = Integer.class),
                         @ColumnResult(name = "price", type = BigDecimal.class),
                         @ColumnResult(name = "product_name", type = String.class)
-
                 }
         )
 )

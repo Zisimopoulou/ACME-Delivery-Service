@@ -72,53 +72,51 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
 
         Store louloudaki = storeService.initiateStore("Louloudaki",mezedopoleio,"Plateia Eleftheris 51 71303 Athens Attica");
         louloudaki.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/304138197_490310123099500_3228594208283622768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=Wj9MigUQ7xUAX8ssch0&_nc_oc=AQmQoUhCmVKCDMxj3ZuPQ5pPkGhjGnqjlQdUsc_eO2OvuxrZ2BYb1yTe6LPuzujBfE0&_nc_ht=scontent.fath4-2.fna&oh=00_AT_IyYwBo2kdevjh7lZ_M4SNoh8UT33T628kHfuVmT-1uA&oe=632A12C2");
-        storeService.addStoreProduct(louloudaki,salad,"Louloudaki Salad","With vinegar sauce and manouri cheese", BigDecimal.valueOf(4.5),"");
-        storeService.addStoreProduct(louloudaki,appetizers,"Fried Liver","empty", BigDecimal.valueOf(5),"https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/shutterstock_1272921334.jpg");
-        storeService.addStoreProduct(louloudaki,appetizers,"Fried Zucchini","empty", BigDecimal.valueOf(3),"");
-        storeService.addStoreProduct(louloudaki,alcohol,"Red wine","250 ml", BigDecimal.valueOf(2),"");
+        storeService.addStoreProduct(louloudaki,salad,"Louloudaki Salad","With vinegar sauce and manouri cheese", BigDecimal.valueOf(4.5),"https://tmbidigitalassetsazure.blob.core.windows.net/rms3-prod/attachments/37/1200x1200/exps40656_TH1789929D22A_RMS.jpg");
+        storeService.addStoreProduct(louloudaki,appetizers,"Fried Liver","", BigDecimal.valueOf(5),"https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/shutterstock_1272921334.jpg");
+        storeService.addStoreProduct(louloudaki,appetizers,"Fried Zucchini","", BigDecimal.valueOf(3),"https://noshingwiththenolands.com/wp-content/uploads/2021/03/Fried-Zucchini-1200-x-1200.jpg");
+        storeService.addStoreProduct(louloudaki,alcohol,"Red wine","250 ml", BigDecimal.valueOf(2),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6lcZoYroKsD-ZLvZAX73VjYHumwW_JKR6pg&usqp=CAU");
         storeService.create(louloudaki);
 
         Store mushisi = storeService.initiateStore("Mushisi",asian,"Plateia Makedonon 51 71203 Athens Attica");
         mushisi.setImage("http://d20aeo683mqd6t.cloudfront.net/articles/title_images/000/027/021/medium/pixta_18413006_S.jpg?2017");
-        storeService.addStoreProduct(mushisi,noodles,"Rice Noodles","Panarismena me zoumero stithos kotopoulo kai moustarda", BigDecimal.valueOf(6.25),"");
-        storeService.addStoreProduct(mushisi,appetizers,"Onion Rings","Traganes rodeles kremmidiou", BigDecimal.valueOf(5),"");
-        storeService.addStoreProduct(mushisi,sauce,"Ketchup","50 ml", BigDecimal.valueOf(1),"");
-        storeService.addStoreProduct(mushisi,seafood,"Shrimps","with coconut sauce", BigDecimal.valueOf(2),"");
+        storeService.addStoreProduct(mushisi,noodles,"Rice Noodles","With chicken and tomato", BigDecimal.valueOf(6.25),"https://www.seriouseats.com/thmb/KHPRZ5PXARmmc2tejrE-_YWPU4w=/1125x1125/smart/filters:no_upscale()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__05__20150424-singapore-noodles-shao-zhong-20-130b0ed9d8ad45b3bd164cbe1328abef.jpg");
+        storeService.addStoreProduct(mushisi,appetizers,"Onion Rings","Crispy", BigDecimal.valueOf(5),"https://i0.wp.com/cooknshare.com/wp-content/uploads/2021/05/onionringspic.jpg?fit=1493%2C840&ssl=1");
+        storeService.addStoreProduct(mushisi,sauce,"Ketchup","50 ml", BigDecimal.valueOf(1),"https://www.thepetitecook.com/wp-content/uploads/2019/06/homemade-ketchup.jpg");
+        storeService.addStoreProduct(mushisi,seafood,"Shrimps","with coconut sauce", BigDecimal.valueOf(2),"https://www.foodandwine.com/thmb/QOMDlwiYcWiwWpFOQM2ahMwDFv4=/2000x1333/filters:fill(auto,1)/honey-pepper-coconut-shrimp-FT-RECIPE0620-2ced1c1798824999bd64b3171f7c63b6.jpg");
         storeService.create(mushisi);
 
         Store natsume = storeService.initiateStore("Natsume",asian,"Plateia Eleftheris 2 71303 Athens Attica");
-        natsume.setImage("https://uploads-ssl.webflow.com/5c30841dedb5fd496eb1396c/6187a221326ced5eb2c9cfaa_tF2XDzMDsn0z7ohkrivsEAXIOEthWAUI8-QTJzmdMX9f-gIMLh9Utkflej5xn9B5w0YWy_O4rIIJ9T7s5o4hgaPNlaN7uEmMDMkWWIEDutos4gGA4wkdCy7lneP-6axP_cnQrYKi.png");
-        storeService.addStoreProduct(natsume,appetizers,"Vegan nugets","Panarismena laxtarista nuggets sinidevmena me patates tiganites", BigDecimal.valueOf(7.1),"");
-        storeService.addStoreProduct(natsume,appetizers,"Apaki spring rolls","empty", BigDecimal.valueOf(5),"");
-        storeService.addStoreProduct(natsume,sushi,"Sushi with avocado","empty", BigDecimal.valueOf(3),"");
+        natsume.setImage("https://excite.mochimune.jp/images/food_natsume_3.jpg");
+        storeService.addStoreProduct(natsume,appetizers,"Vegan nugets","With white sauce", BigDecimal.valueOf(7.1),"https://www.giorgostsoulis.com/media/k2/items/cache/4cd5973a7c2085986240cae9b1f23d5c_L.jpg");
+        storeService.addStoreProduct(natsume,appetizers,"Apaki spring rolls","", BigDecimal.valueOf(5),"https://media-cdn.tripadvisor.com/media/photo-s/1b/b8/6d/43/phyllo-rolls.jpg");
+        storeService.addStoreProduct(natsume,sushi,"Sushi with avocado","", BigDecimal.valueOf(3),"https://brokebankvegan.com/wp-content/uploads/2022/06/Avocado-Roll-39.jpg");
         storeService.create(natsume);
 
         Store zorbas = storeService.initiateStore("Zorbas",souvlatzidiko,"Kornarou 25 71103 Athens Attica");
         zorbas.setImage("https://zorbas-seaside-restaurant.com/wp-content/uploads/2022/01/chicken-souvlaki.png");
-        storeService.addStoreProduct(zorbas,souvlaki,"Souvlaki kotopoulo","Me laxano patates ntomata kremmudi", BigDecimal.valueOf(3.5),"");
+        storeService.addStoreProduct(zorbas,souvlaki,"Souvlaki kotopoulo","", BigDecimal.valueOf(3.5),"https://elviart.com/wp-content/uploads/2017/05/souvlaki-kotopoulo-800x600.jpg");
         storeService.create(zorbas);
 
         Store coffeeIsland = storeService.initiateStore("Coffee Island",coffeeShop,"Makariou 5 74303 Athens Attica");
         coffeeIsland.setImage("https://th.bing.com/th/id/R.c805f8ce5b777b281de7a904e0f7d44b?rik=K11nPjbql2ACLA&pid=ImgRaw&r=0");
-        storeService.addStoreProduct(coffeeIsland,coffee,"Greek coffee","emoty", BigDecimal.valueOf(2),"");
+        storeService.addStoreProduct(coffeeIsland,coffee,"Greek coffee","", BigDecimal.valueOf(2),"https://www.thehungrybites.com/wp-content/uploads/2020/05/turkish-greek-coffee-profile.jpg");
         storeService.create(coffeeIsland);
 
-        Store xelona = storeService.initiateStore("Xelona",mezedopoleio,"Kornarou 2 70303 Athens Attica");
-        xelona.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/296156254_2008631672657602_1411545847266347075_n.png?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=DjHJNnjtn4QAX_EObp2&_nc_ht=scontent.fath4-2.fna&oh=00_AT8x3T_vXCDvF3XMsSdhKC-RRBqphnHqHmfKXkFiD8xHKw&oe=63290E54");
-        storeService.addStoreProduct(xelona,appetizers,"Fried Zucchini","empty", BigDecimal.valueOf(3.5),"");
+        Store xelona = storeService.initiateStore("The Green Turtle",mezedopoleio,"Kornarou 2 70303 Athens Attica");
+        xelona.setImage("https://wtop.com/wp-content/uploads/2015/03/The_Greene_Turtle.jpg");
+        storeService.addStoreProduct(xelona,appetizers,"Fried Zucchini","", BigDecimal.valueOf(3.5),"https://www.thespruceeats.com/thmb/7KeyIEZt5OxTEX9jbcSZKN_5GPY=/3600x2402/filters:no_upscale():max_bytes(150000):strip_icc()/oven-fried-zucchini-recipe-2098669-step-14-5c29059146e0fb0001a880f6.jpg");
         storeService.create(xelona);
 
-        Store kagiampis = storeService.initiateStore("O Kafenes tou Kagiampi",mezedopoleio,"Katexaki 50 74303 Athens Attica");
+        Store kagiampis = storeService.initiateStore("Kagiampis",mezedopoleio,"Katexaki 50 74303 Athens Attica");
         kagiampis.setImage("https://www.gastronomos.gr/wp-content/uploads/2022/09/Sisli-14-Gastronomos-1536x864.jpg");
-        storeService.addStoreProduct(kagiampis,appetizers,"Tzatziki","empty", BigDecimal.valueOf(3.1),"");
+        storeService.addStoreProduct(kagiampis,appetizers,"Tzatziki","", BigDecimal.valueOf(3.1),"https://www.argiro.gr/wp-content/uploads/2021/07/tzatziki-400x400.jpg?v=1650369947");
         storeService.create(kagiampis);
 
         Store pratos = storeService.initiateStore("Pratos",iceCreamShop,"Katexaki 23 74303 Athens Attica");
         pratos.setImage("https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/2C2D5856-92AE-4D1F-BACB-50751CB621DF/Derivates/B32DA530-AC76-49A9-A414-531518309591.jpg");
-        storeService.addStoreProduct(pratos,iceCream,"Vanillia ice cream","empty", BigDecimal.valueOf(3.1),"");
+        storeService.addStoreProduct(pratos,iceCream,"Vanillia ice cream","", BigDecimal.valueOf(3.1),"https://static.toiimg.com/thumb/63971154.cms?width=573&height=430");
         storeService.create(pratos);
-
-        PaymentCard.builder().build();
 
         Account firstAccount = accountService.findByEmail("mommykmr@hotmail.red");
         Order firstOrder = orderService.initiateOrder(firstAccount);

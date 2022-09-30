@@ -29,7 +29,6 @@ public class StoreProduct extends BaseModel {
 
     @EqualsAndHashCode.Exclude
     @Column(length = 100)
-    @Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Store product details must be alphanumeric.") //correct pattern or empty
     private String details;
 
     @EqualsAndHashCode.Exclude
@@ -40,7 +39,7 @@ public class StoreProduct extends BaseModel {
     private BigDecimal price;
 
     @EqualsAndHashCode.Exclude
-    @Column
+    @Column(length = 500)
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)
