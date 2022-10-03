@@ -27,26 +27,26 @@ import java.util.Set;
 
 @NamedNativeQuery(name = "Store.ReportTop10StoreProducts",
         query ="""
-			SELECT storeProductName, storeProductImage, storeName, COUNT(STOREPRODUCT_ID)
-            FROM ORDER_ITEMS
-            INNER JOIN (
-               SELECT store_products.name as storeProductName, store_products.image as storeProductImage, stores.name as storeName,STORE_PRODUCTS.ID as spid
-               FROM STORES
-               INNER JOIN STORE_PRODUCTS ON store_products.store_id=stores.id
-                       )
-            ON spid=ORDER_ITEMS.STOREPRODUCT_ID
-            GROUP BY storeProductName,storeProductImage,storeName
-            ORDER BY COUNT(STOREPRODUCT_ID) DESC
-            FETCH NEXT 10 ROWS ONLY
+			SELECT storeId,storeProductName, storeProductImage, storeName, COUNT(STOREPRODUCT_ID)
+               FROM ORDER_ITEMS
+               INNER JOIN (
+                  SELECT stores.id as storeId,store_products.name as storeProductName, store_products.image as storeProductImage, stores.name as storeName,STORE_PRODUCTS.ID as spid
+                  FROM STORES
+                  INNER JOIN STORE_PRODUCTS ON store_products.store_id=stores.id
+                          )
+               ON spid=ORDER_ITEMS.STOREPRODUCT_ID
+               GROUP BY storeProductName,storeProductImage,storeName,storeId
+               ORDER BY COUNT(STOREPRODUCT_ID) DESC
+               FETCH NEXT 10 ROWS ONLY
 			""",
         resultSetMapping = "ReportTop10StoreProducts")
 @SqlResultSetMapping(name = "ReportTop10StoreProducts",
         classes = @ConstructorResult(
                 targetClass = KeyTwoValues.class,
                 columns = {
+                        @ColumnResult(name = "storeId", type = String.class),
                         @ColumnResult(name = "storeProductName", type = String.class),
-                        @ColumnResult(name = "storeProductImage", type = String.class),
-                        @ColumnResult(name = "storeName", type = String.class)
+                        @ColumnResult(name = "storeProductImage", type = String.class)
                 }
         )
 )

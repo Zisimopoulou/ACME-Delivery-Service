@@ -71,7 +71,7 @@ public class SampleContent extends BaseComponent implements CommandLineRunner {
         storeCategoryService.findAll().forEach(sc -> logger.info("Store category {} created.", sc));
 
         Store louloudaki = storeService.initiateStore("Louloudaki",mezedopoleio,"Plateia Eleftheris 51 71303 Athens Attica");
-        louloudaki.setImage("https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/304138197_490310123099500_3228594208283622768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=Wj9MigUQ7xUAX8ssch0&_nc_oc=AQmQoUhCmVKCDMxj3ZuPQ5pPkGhjGnqjlQdUsc_eO2OvuxrZ2BYb1yTe6LPuzujBfE0&_nc_ht=scontent.fath4-2.fna&oh=00_AT_IyYwBo2kdevjh7lZ_M4SNoh8UT33T628kHfuVmT-1uA&oe=632A12C2");
+        louloudaki.setImage("https://scontent.fath6-1.fna.fbcdn.net/v/t39.30808-6/304138197_490310123099500_3228594208283622768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=6xybyTturKcAX-8ghZE&_nc_oc=AQmBXi0c5WNxXfxAjmopUSfAH7kWUzqPZ8TXa4XXdJLXdaBA-PSoKmRT8Z5M48g3q3Y&_nc_ht=scontent.fath6-1.fna&oh=00_AT96Xph4L8EWzVlr2m5-xZjAt264dRdF8r0KFFjlzaP7Ow&oe=633BDF02");
         storeService.addStoreProduct(louloudaki,salad,"Louloudaki Salad","With vinegar sauce and manouri cheese", BigDecimal.valueOf(4.5),"https://tmbidigitalassetsazure.blob.core.windows.net/rms3-prod/attachments/37/1200x1200/exps40656_TH1789929D22A_RMS.jpg");
         storeService.addStoreProduct(louloudaki,appetizers,"Fried Liver","", BigDecimal.valueOf(5),"https://assets-cdn.kathmandupost.com/uploads/source/news/2019/lifestyle/shutterstock_1272921334.jpg");
         storeService.addStoreProduct(louloudaki,appetizers,"Fried Zucchini","", BigDecimal.valueOf(3),"https://noshingwiththenolands.com/wp-content/uploads/2021/03/Fried-Zucchini-1200-x-1200.jpg");
