@@ -48,7 +48,7 @@ public class StoreControllerImpl extends BaseControllerImpl<Store> {
         return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String,String,String>>>builder().data(storeService.reportTopStoresPerCategory(id)).build());
     }
 
-    @GetMapping("lazy")
+    @GetMapping("all")
     public ResponseEntity<ApiResponse<List<KeyTwoValues<String, String, String>>>> findLazyStores() {
         return ResponseEntity.ok(ApiResponse.<List<KeyTwoValues<String, String, String>>>builder().data(storeService.getLazyStores()).build());
     }
