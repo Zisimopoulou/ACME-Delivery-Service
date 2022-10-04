@@ -2,6 +2,7 @@ package com.acme.team7.ACMEDeliveryService.service;
 
 import com.acme.team7.ACMEDeliveryService.domain.*;
 import com.acme.team7.ACMEDeliveryService.repository.StoreRepository;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyThreeValues;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -73,7 +74,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<KeyTwoValues<String,String,String>> reportTop10StoreProducts() {
+    public List<KeyThreeValues<String, String, String, String>> reportTop10StoreProducts() {
         return storeRepository.reportTop10StoreProducts();
     }
     @Override

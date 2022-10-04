@@ -1,6 +1,7 @@
 package com.acme.team7.ACMEDeliveryService.repository;
 
 import com.acme.team7.ACMEDeliveryService.domain.Store;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyThreeValues;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +16,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
     List<Store> findStoresByStoreCategory_Description(String description);
 
     @Query(name = "Store.ReportTop10StoreProducts",nativeQuery = true)
-    List<KeyTwoValues<String,String,String>> reportTop10StoreProducts();
+    List<KeyThreeValues<String,String,String,String>> reportTop10StoreProducts();
 
     @Query(name = "Store.ReportTopStores",nativeQuery = true)
     List<KeyTwoValues<String, String, String>> reportTopStores();

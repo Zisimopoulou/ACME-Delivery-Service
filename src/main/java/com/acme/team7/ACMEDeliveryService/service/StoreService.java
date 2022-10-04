@@ -4,6 +4,7 @@ import com.acme.team7.ACMEDeliveryService.domain.ProductCategory;
 import com.acme.team7.ACMEDeliveryService.domain.Store;
 import com.acme.team7.ACMEDeliveryService.domain.StoreCategory;
 import com.acme.team7.ACMEDeliveryService.domain.StoreProduct;
+import com.acme.team7.ACMEDeliveryService.transfer.KeyThreeValues;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
 
 import java.math.BigDecimal;
@@ -22,7 +23,7 @@ public interface StoreService extends BaseService<Store>{
 
     StoreProduct getStoreProduct(Store store, Long id);
 
-    List<KeyTwoValues<String,String,String>> reportTop10StoreProducts();
+    List<KeyThreeValues<String,String,String,String>> reportTop10StoreProducts();
 
     List<KeyTwoValues<String, String, String>> reportTopStores();
 

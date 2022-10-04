@@ -1,5 +1,6 @@
 package com.acme.team7.ACMEDeliveryService.domain;
 
+import com.acme.team7.ACMEDeliveryService.transfer.KeyThreeValues;
 import com.acme.team7.ACMEDeliveryService.transfer.KeyTwoValues;
 import lombok.*;
 
@@ -27,26 +28,27 @@ import java.util.Set;
 
 @NamedNativeQuery(name = "Store.ReportTop10StoreProducts",
         query ="""
-			SELECT storeId,storeProductName, storeProductImage, storeName, COUNT(STOREPRODUCT_ID)
-               FROM ORDER_ITEMS
-               INNER JOIN (
-                  SELECT stores.id as storeId,store_products.name as storeProductName, store_products.image as storeProductImage, stores.name as storeName,STORE_PRODUCTS.ID as spid
-                  FROM STORES
-                  INNER JOIN STORE_PRODUCTS ON store_products.store_id=stores.id
-                          )
-               ON spid=ORDER_ITEMS.STOREPRODUCT_ID
-               GROUP BY storeProductName,storeProductImage,storeName,storeId
-               ORDER BY COUNT(STOREPRODUCT_ID) DESC
-               FETCH NEXT 10 ROWS ONLY
+			      SELECT storeId,storeProductName, storeProductImage, storeName, productPrice ,COUNT(STOREPRODUCT_ID)
+                  FROM ORDER_ITEMS
+                  INNER JOIN (
+                     SELECT store_products.price as productPrice, stores.id as storeId,store_products.name as storeProductName, store_products.image as storeProductImage, stores.name as storeName,STORE_PRODUCTS.ID as spid
+                     FROM STORES
+                     INNER JOIN STORE_PRODUCTS ON store_products.store_id=stores.id
+                             )
+                  ON spid=ORDER_ITEMS.STOREPRODUCT_ID
+                  GROUP BY storeProductName,storeProductImage,storeName,storeId,productPrice
+                  ORDER BY COUNT(STOREPRODUCT_ID) DESC
+                  FETCH NEXT 10 ROWS ONLY
 			""",
         resultSetMapping = "ReportTop10StoreProducts")
 @SqlResultSetMapping(name = "ReportTop10StoreProducts",
         classes = @ConstructorResult(
-                targetClass = KeyTwoValues.class,
+                targetClass = KeyThreeValues.class,
                 columns = {
                         @ColumnResult(name = "storeId", type = String.class),
                         @ColumnResult(name = "storeProductName", type = String.class),
-                        @ColumnResult(name = "storeProductImage", type = String.class)
+                        @ColumnResult(name = "storeProductImage", type = String.class),
+                        @ColumnResult(name = "productPrice", type = String.class)
                 }
         )
 )
@@ -63,7 +65,7 @@ import java.util.Set;
                       ) ON store_id=stores.id
                GROUP BY stores.id,stores.name,stores.image
                ORDER BY COUNT(store_id) DESC
-               FETCH NEXT 20 ROWS ONLY
+               FETCH NEXT 4 ROWS ONLY
 			""",
         resultSetMapping = "ReportTopStores")
 @SqlResultSetMapping(name = "ReportTopStores",
