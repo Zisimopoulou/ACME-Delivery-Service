@@ -1,7 +1,8 @@
 # ACME-Delivery-Service
 ACME Delivery Service is a web application that allows individuals to order online food, coffee, beverages, etc. Frontend part of project: https://github.com/peterdsp/ACME-Delivery-Service-FrontEnd
 
-Business Requirements
+# Business Requirements
+
 •Search for the desired store, either by name or by category.
 •Add one or more items from the store's menu to the order.
 •Create an order containing items only from the same store.
