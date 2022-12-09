@@ -10,3 +10,7 @@ ACME Delivery Service is a web application that allows individuals to order onli
 •Retrieve all placed orders.
 •List of the most famous stores in general and per category.
 •List of the 10 most popular products to order.
+
+# More info
+This project was part of the 3 months training program of organized by Code.Hub, on behalf of PMM group.
+ 
